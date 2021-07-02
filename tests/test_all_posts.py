@@ -1,4 +1,4 @@
-from lib.public import PublicClient
+from lib import PublicClient
 
 client = PublicClient()
 

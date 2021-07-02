@@ -4,14 +4,22 @@ version = "0.1.0"
 description = "Extraction tool for GETTR, a \"non-bias [sic] social network.\""
 authors = ["Stanford Internet Observatory <mccain@stanford.edu>"]
 license = "Apache-2.0"
+packages = [
+    {include = "lib"}
+]
+
+[tool.poetry.scripts]
+gogetter = "lib.cli:cli"
 
 [tool.poetry.dependencies]
 python = "^3.8"
 requests = "^2.25.1"
+click = "^8.0.1"
 
 [tool.poetry.dev-dependencies]
 black = "^21.6b0"
 pytest = "^6.2.4"
+pylint = "^2.9.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

@@ -1,4 +1,3 @@
-from typing import Generator
 from lib.capabilities import user_posts, all_posts
 from lib.api import ApiClient
 
