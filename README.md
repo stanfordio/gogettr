@@ -14,11 +14,64 @@ This tool was made by "reverse engineering" GETTR's API. (It wasn't that hard.) 
 
 ## CLI Playbook
 
-TODO
+#### Pull all posts (starting at id 1)
+
+```
+gogettr all-posts
+```
+
+#### Pull all posts (starting at a particular ID and moving backward through IDs)
+
+```
+gogettr all-posts --rev --last pay8d
+```
+
+#### Pull all posts from a user
+
+```
+gogetter user-posts USERNAME
+```
 
 ## CLI Usage
 
-TODO
+```
+Usage: gogettr [OPTIONS] COMMAND [ARGS]...
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  all-posts   Pull all posts sequentially.
+  user-posts  Pull posts by a user.
+```
+
+### `user-posts`
+
+```
+Usage: gogettr user-posts [OPTIONS] USERNAME
+
+  Pull posts by a user.
+
+Options:
+  --max INTEGER  the maximum number of posts to pull
+  --until TEXT   the ID of the earliest post to pull for the user
+  --help         Show this message and exit.
+```
+
+### `all-posts`
+
+```
+Usage: gogettr all-posts [OPTIONS]
+
+  Pull all posts sequentially.
+
+Options:
+  --first TEXT   the ID of the first post to pull
+  --last TEXT    the ID of the last post to pull
+  --max INTEGER  the maximum number of posts to pull
+  --rev          increment reverse chronologically (i.e., from last to first)
+  --help         Show this message and exit.
+```
 
 ## Module Usage
 
@@ -32,7 +85,15 @@ posts = client.user_posts(username="support")
 
 For more examples of using GoGettr as a module, check out the [tests directory](tests/).
 
-# Wishlist
+## Development
+
+To run gogettr in a development environment, you'll need [Poetry](https://python-poetry.org). Install the dependencies by running `poetry install`, and then you're all set to work on gogettr locally.
+
+To run the tests, run `poetry run pytest`.
+
+To access the CLI, run `poetry run gogettr`.
+
+## Wishlist
 
 We hope to add support for the following capabilities to GoGettr:
 

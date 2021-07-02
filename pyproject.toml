@@ -9,7 +9,7 @@ packages = [
 ]
 
 [tool.poetry.scripts]
-gogetter = "lib.cli:cli"
+gogettr = "lib.cli:cli"
 
 [tool.poetry.dependencies]
 python = "^3.8"
