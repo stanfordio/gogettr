@@ -11,6 +11,14 @@ class AllPosts(Capability):
         max: int = None,
         order: Literal["up", "down"] = "up",
     ) -> Iterator[dict]:
+        """Pulls all the posts from the API sequentially.
+
+        :param str first: the id of the earliest post to include
+        :param str last: the id of the last post to include
+        :param int max: the maximum number of posts to pull
+        :order ["up" | "down"] order: whether to go from first to last (chronological) or last to first (reverse chronological)
+        """
+
         # We remove the first character from the post IDs below because they are always `p` and not part of the numbering scheme
         if order == "up":
             post_id = b36decode(first[1:]) if first is not None else 1

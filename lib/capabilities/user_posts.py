@@ -5,6 +5,12 @@ from lib.capabilities.base import Capability
 
 class UserPosts(Capability):
     def pull(self, username: str, max: int = None, until: str = None) -> Iterator[dict]:
+        """Pull the users' posts from the API.
+
+        :param str username: the username of the desired user
+        :param int max: the maximum number of posts to pull
+        :param str until: the earliest post ID to pull"""
+
         url = f"/u/user/{username}/posts"
         n = 0  # Number of posts emitted
 
