@@ -8,7 +8,9 @@ class ApiClient:
         """Initializes the API client. Optionally takes in a base URL for the GETTR api."""
         self.api_base_url = api_base_url or "https://api.gettr.com"
 
-    def get(self, url: str, params: dict = None, retries: int = 3, key: str="results") -> dict:
+    def get(
+        self, url: str, params: dict = None, retries: int = 3, key: str = "results"
+    ) -> dict:
         """Makes a request to the given API endpoint and returns the 'results' object. Supports retries. Soon will support authentication."""
         tries = 0
 
@@ -29,4 +31,3 @@ class ApiClient:
             return resp.json()[key]
 
         raise RuntimeError("unable to pull from Gettr")
-        
