@@ -10,7 +10,7 @@ Currently, this tool can:
 
 ## Robustness
 
-This tool was made by reverse engineering GETTR's API. (To be fair, it wasn't that hard.) Because we have no insight into GETTR's internals, there's no guarantee that this tool provides an exhaustive or reliable export of GETTR content. Still, it does a pretty good job.
+This tool was made by "reverse engineering" GETTR's API. (It wasn't that hard.) Because we have no insight into GETTR's internals, there's no guarantee that this tool provides an exhaustive or reliable export of GETTR content. Still, it does a pretty good job.
 
 ## CLI Playbook
 
