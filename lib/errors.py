@@ -1,0 +1,2 @@
+class GettrApiError(RuntimeError):
+    pass

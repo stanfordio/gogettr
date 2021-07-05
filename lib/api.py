@@ -1,3 +1,4 @@
+from lib.errors import GettrApiError
 import logging
 from typing import Iterator
 import requests
@@ -17,9 +18,9 @@ class ApiClient:
         tries = 0
 
         while tries < retries:
-            resp = requests.get(self.api_base_url + url, params=params)
+            resp = requests.get(self.api_base_url + url, params=params, timeout=10)
             tries += 1
-            if resp.status_code != 200 or key not in resp.json():
+            if resp.status_code in [429, 500, 502, 503, 504]:
                 logging.warning(
                     "Unable to pull from API; waiting %s seconds before retrying (attempt %s/%s)...",
                     4 ** tries,
@@ -30,7 +31,12 @@ class ApiClient:
                 continue
 
             logging.debug("GET %s with params %s yielded %s", url, params, resp.content)
-            return resp.json()[key]
+            
+            data = resp.json()
+            if key in data:
+                return data[key]
+            elif "error" in data:
+                raise GettrApiError(data["error"])
 
         raise RuntimeError("unable to pull from Gettr")
 
