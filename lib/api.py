@@ -1,6 +1,6 @@
 from lib.errors import GettrApiError
 import logging
-from typing import Iterator
+from typing import Callable, Iterator
 import requests
 import time
 import itertools
@@ -12,7 +12,7 @@ class ApiClient:
         self.api_base_url = api_base_url or "https://api.gettr.com"
 
     def get(
-        self, url: str, params: dict = None, retries: int = 3, key: str = "results"
+        self, url: str, params: dict = None, retries: int = 3, key: str = "result"
     ) -> dict:
         """Makes a request to the given API endpoint and returns the 'results' object. Supports retries. Soon will support authentication."""
         tries = 0
@@ -46,6 +46,7 @@ class ApiClient:
         offset_param: str = "offset",
         offset_start: int = 0,
         offset_step: int = 20,
+        result_count_func: Callable[[dict], int] = lambda k: len(k["data"]["list"]),
         **kwargs
     ) -> Iterator[dict]:
         """Paginates requests to the given API endpoint."""
@@ -53,4 +54,9 @@ class ApiClient:
             params = kwargs.get("params", {})
             params[offset_param] = i
             kwargs["params"] = params
-            yield self.get(*args, **kwargs)
+            data = self.get(*args, **kwargs)
+            yield data
+
+            # End if no more results
+            if result_count_func(data) == 0:
+                return
