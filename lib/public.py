@@ -1,10 +1,11 @@
 from lib.capabilities import (
     user_activity,
-    all_posts,
+    all,
     user_info,
     user_relationships,
     trends,
     suggested,
+    hashtags,
 )
 from lib.api import ApiClient
 
@@ -17,10 +18,11 @@ class PublicClient:
 
         # Set up capabilities
         self.user_activity = user_activity.UserActivity(self.api_client).pull
-        self.all_posts = all_posts.AllPosts(self.api_client).pull
+        self.all = all.All(self.api_client).pull
         self.user_info = user_info.UserInfo(self.api_client).pull
         self.user_relationships = user_relationships.UserRelationships(
             self.api_client
         ).pull
         self.trends = trends.Trends(self.api_client).pull
         self.suggested = suggested.Suggested(self.api_client).pull
+        self.hashtags = hashtags.Hashtags(self.api_client).pull
