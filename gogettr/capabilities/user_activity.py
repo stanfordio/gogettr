@@ -43,7 +43,7 @@ class UserActivity(Capability):
 
             # Check if we've run out of posts to pull
             if len(data["data"]["list"]) == 0:
-                break
+                return
 
             for event in data["data"]["list"]:
                 id = event["activity"]["tgt_id"]
@@ -53,11 +53,11 @@ class UserActivity(Capability):
 
                 # Verify that we haven't passed the `until` post
                 if until is not None and until > id:
-                    break
+                    return
 
                 # Verify that we haven't passed the max number of posts
                 if max is not None and n >= max:
-                    break
+                    return
 
                 n += 1
                 yield post

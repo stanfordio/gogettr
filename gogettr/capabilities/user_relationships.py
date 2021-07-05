@@ -36,12 +36,12 @@ class UserRelationships(Capability):
 
             # Check if we've run out of users to pull
             if len(data["data"]["list"]) == 0:
-                break
+                return
 
             for username in data["data"]["list"]:
                 # Verify that we haven't passed the max number of posts
                 if max is not None and n >= max:
-                    break
+                    return
 
                 n += 1
                 yield data["aux"]["uinf"][username]

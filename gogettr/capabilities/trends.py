@@ -34,11 +34,11 @@ class Trends(Capability):
 
                 # Verify that we haven't passed the `until` post
                 if until is not None and until > id:
-                    break
+                    return
 
                 # Verify that we haven't passed the max number of posts
                 if max is not None and n >= max:
-                    break
+                    return
 
                 n += 1
                 yield post
