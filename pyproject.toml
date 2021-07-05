@@ -9,6 +9,7 @@ keywords = ["gettr", "scraper", "cli"]
 packages = [
     {include = "gogettr", from = "lib"}
 ]
+readme = "README.md"
 
 [tool.poetry.scripts]
 gogettr = "lib.cli:cli"
