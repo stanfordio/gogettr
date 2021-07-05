@@ -4,7 +4,7 @@ from lib.capabilities import (
     user_info,
     user_relationships,
     trends,
-    suggested
+    suggested,
 )
 from lib.api import ApiClient
 
