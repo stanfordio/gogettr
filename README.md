@@ -138,6 +138,7 @@ Options:
 
 ### `trends`
 
+```
 Usage: gogettr trends [OPTIONS]
 
   Pull all the trends (posts displayed on the home page).
@@ -146,6 +147,7 @@ Options:
   --max INTEGER  the maximum number of posts to pull
   --until TEXT   the ID of the earliest post to pull
   --help         Show this message and exit.
+```
 
 ### `user`
 
