@@ -210,7 +210,6 @@ To access the CLI, run `poetry run gogettr`.
 We hope to add support for the following capabilities to GoGettr:
 
 - [ ] Pull all comments for a post
-- [ ] Pull all comments on the platform
 - [ ] Pull all users on the platform
 - [ ] Search for content
 - [ ] Multithreaded/concurrent API requests for sequential scans (e.g., pulling all posts on the platform)
