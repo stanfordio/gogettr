@@ -1,4 +1,10 @@
-from lib.capabilities import user_activity, all_posts, user_info, user_relationships
+from lib.capabilities import (
+    user_activity,
+    all_posts,
+    user_info,
+    user_relationships,
+    trends,
+)
 from lib.api import ApiClient
 
 
@@ -15,3 +21,4 @@ class PublicClient:
         self.user_relationships = user_relationships.UserRelationships(
             self.api_client
         ).pull
+        self.trends = trends.Trends(self.api_client).pull

@@ -68,3 +68,12 @@ def user_following(username, max: int = None):
     """Pull all users a given user follows."""
     for user in client.user_relationships(username, max=max, type="following"):
         print(json.dumps(user))
+
+
+@cli.command()
+@click.option("--max", help="the maximum number of posts to pull", type=int)
+@click.option("--until", help="the ID of the earliest post to pull")
+def trends(max: int = None, until: str = None):
+    """Pull all the trends (posts displayed on the home page)."""
+    for post in client.trends(max=max, until=until):
+        print(json.dumps(post))
