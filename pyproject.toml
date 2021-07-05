@@ -1,11 +1,13 @@
 [tool.poetry]
 name = "gogettr"
-version = "0.1.0"
+version = "0.2.0"
 description = "Extraction tool for GETTR, a \"non-bias [sic] social network.\""
 authors = ["Stanford Internet Observatory <mccain@stanford.edu>"]
 license = "Apache-2.0"
+homepage = "https://github.com/stanfordio/gogettr"
+keywords = ["gettr", "scraper", "cli"]
 packages = [
-    {include = "lib"}
+    {include = "gogettr", from = "lib"}
 ]
 
 [tool.poetry.scripts]
