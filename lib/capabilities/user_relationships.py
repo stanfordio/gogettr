@@ -31,7 +31,6 @@ class UserRelationships(Capability):
                 "max": 500,  # They don't seem to limit this!
                 "incl": "userstats|userinfo",
             },
-            key="result",
             offset_step=500,
         ):
 

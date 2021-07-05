@@ -65,5 +65,6 @@ class AllPosts(Capability):
                     s_pst=data["aux"]["s_pst"],
                 ),
             )
+
             n += 1
             yield post
