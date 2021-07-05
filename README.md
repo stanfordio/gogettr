@@ -19,7 +19,13 @@ Note that GoGettr does barely any formatting or postprocessing of the data retur
 #### Pull all posts (starting at id 1)
 
 ```
-gogettr all-posts
+gogettr all
+```
+
+#### Pull all comments
+
+```
+gogettr all --type comments
 ```
 
 #### Pull all posts (starting at a particular ID and moving backward through IDs)
@@ -61,7 +67,8 @@ Options:
   --help  Show this message and exit.
 
 Commands:
-  all-posts       Pull all posts sequentially.
+  all             Pull all posts (or comments) sequentially.
+  hashtags        Pull the suggested hashtags (the top suggestions are...
   suggested       Pull the suggested users (users displayed on the home...
   trends          Pull all the trends (posts displayed on the home page).
   user            Pull the posts, likes, or comments made by a user.
@@ -70,18 +77,36 @@ Commands:
   user-info       Pull given user's information.
 ```
 
-### `all-posts`
+### `all`
 
 ```
-Usage: gogettr all-posts [OPTIONS]
+Usage: gogettr all [OPTIONS]
 
-  Pull all posts sequentially.
+  Pull all posts (or comments) sequentially.
 
 Options:
-  --first TEXT   the ID of the first post to pull
-  --last TEXT    the ID of the last post to pull
-  --max INTEGER  the maximum number of posts to pull
-  --rev          increment reverse chronologically (i.e., from last to first)
+  --first TEXT             the ID of the first post to pull
+  --last TEXT              the ID of the last post to pull
+  --max INTEGER            the maximum number of posts to pull
+  --rev                    increment reverse chronologically (i.e., from last
+                           to first)
+  --type [posts|comments]
+  --help                   Show this message and exit.
+```
+
+### `hashtags`
+
+```
+Usage: gogettr hashtags [OPTIONS]
+
+  Pull the suggested hashtags (the top suggestions are displayed on the front
+  page).
+
+  Note that while the first five or so hashtags have expanded information
+  associated with them, later results do not.
+
+Options:
+  --max INTEGER  the maximum number of hashtags to pull
   --help         Show this message and exit.
 ```
 
@@ -184,7 +209,6 @@ To access the CLI, run `poetry run gogettr`.
 
 We hope to add support for the following capabilities to GoGettr:
 
-- [ ] Pull suggested users
 - [ ] Pull all comments for a post
 - [ ] Pull all comments on the platform
 - [ ] Pull all users on the platform
