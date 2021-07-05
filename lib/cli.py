@@ -12,11 +12,17 @@ def cli():
 
 @cli.command()
 @click.argument("username")
-@click.option("--max", help="the maximum number of posts to pull", type=int)
-@click.option("--until", help="the ID of the earliest post to pull for the user")
-def user_posts(username, max: int = None, until: str = None):
-    """Pull posts by a user."""
-    for post in client.user_posts(username, max=max, until=until):
+@click.option("--max", help="the maximum number of activities to pull", type=int)
+@click.option("--until", help="the ID of the earliest activity to pull for the user")
+@click.option(
+    "--type",
+    help="",
+    type=click.Choice(["posts", "comments", "likes"]),
+    default="posts",
+)
+def user(username, max: int = None, until: str = None, type: str = None):
+    """Pull the posts, likes, or comments made by a user."""
+    for post in client.user_activity(username, max=max, until=until, type=type):
         print(json.dumps(post))
 
 
