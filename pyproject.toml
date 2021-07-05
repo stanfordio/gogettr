@@ -7,12 +7,12 @@ license = "Apache-2.0"
 homepage = "https://github.com/stanfordio/gogettr"
 keywords = ["gettr", "scraper", "cli"]
 packages = [
-    {include = "gogettr", from = "lib"}
+    {include = "gogettr"}
 ]
 readme = "README.md"
 
 [tool.poetry.scripts]
-gogettr = "lib.cli:cli"
+gogettr = "gogettr.cli:cli"
 
 [tool.poetry.dependencies]
 python = "^3.8"

@@ -1,5 +1,5 @@
-from lib.errors import GettrApiError
-from lib import PublicClient
+from gogettr.errors import GettrApiError
+from gogettr import PublicClient
 
 client = PublicClient()
 

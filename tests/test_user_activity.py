@@ -1,4 +1,4 @@
-from lib import PublicClient
+from gogettr import PublicClient
 
 client = PublicClient()
 

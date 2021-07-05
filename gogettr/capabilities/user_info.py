@@ -1,5 +1,5 @@
-from lib.utils import merge
-from lib.capabilities.base import Capability
+from gogettr.utils import merge
+from gogettr.capabilities.base import Capability
 
 
 class UserInfo(Capability):
