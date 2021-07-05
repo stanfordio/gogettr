@@ -1,4 +1,3 @@
-from lib.errors import GettrApiError
 from lib import PublicClient
 
 client = PublicClient()
@@ -18,4 +17,3 @@ def test_user_followers():
         client.user_relationships(username="dineshdsouza", type="followers", max=501)
     )
     assert len(resp) == 501
-    assert "RickysWorldd" in [user["ousername"] for user in resp]
