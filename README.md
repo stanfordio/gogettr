@@ -1,12 +1,22 @@
 # GoGettr
-GoGettr is an extraction tool for GETTR, a "non-bias [sic] social network." (We will not reward their domain with a hyperlink.)
+
+GoGettr is an extraction tool for GETTR, a "non-bias [sic] social network." (We will not reward their domain with a hyperlink.) GoGettr is built and maintained by the [Stanford Internet Observatory](https://io.stanford.edu).
 
 This tool does not currently require any authentication with GETTR; it gathers all its data through publicly accessible endpoints. Our plan is to keep it this way for as long as possible.
 
 Currently, this tool can:
 
 * Pull all the posts made on the platform
-* Pull all the posts of a user on the platform
+* Pull all the comments made on the platform
+* Pull all the top "trending" hashtags
+* Pull all the suggested users
+* Pull all the "trending" posts (i.e., the posts on the home page)
+* Pull all the posts and/or comments of a user on the platform
+* Pull all a users' followers
+* Pull all the users a particular user follows
+* Pull information about any users on the platform
+
+We intend for this tool to be used for academic research, open source intelligence gathering, and data archival. We pull all of the data from the publicly accessible API.
 
 ## Robustness
 
@@ -204,6 +214,14 @@ To run gogettr in a development environment, you'll need [Poetry](https://python
 To run the tests, run `poetry run pytest`.
 
 To access the CLI, run `poetry run gogettr`.
+
+## Contributing
+
+We appreciate contributions! For small bug fixes and minor improvements, feel free to just open a PR. For larger changes, please open an issue first so that we can discuss your plan, avoid duplicated work, and ensure it aligns with the goals of the project. Be sure to also follow our [code of conduct](CODE_OF_CONDUCT.md). Thanks! 
+
+## Logging
+
+When run in CLI mode, GoGettr will log extensive debug information to `gogettr.log` (in the working directory). This log will include every single request GoGettr makes, and every single response GoGettr receives. Because it's possible that GoGettr accidentally loses some information when parsing API responses, we recommend keeping this file around just in case.
 
 ## Wishlist
 
