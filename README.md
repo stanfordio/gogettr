@@ -219,6 +219,8 @@ To run the tests, run `poetry run pytest`.
 
 To access the CLI, run `poetry run gogettr`.
 
+To package and release a new verson on PyPI, simply create a new release tag on GitHub.
+
 ## Contributing
 
 We appreciate contributions! For small bug fixes and minor improvements, feel free to just open a PR. For larger changes, please open an issue first so that we can discuss your plan, avoid duplicated work, and ensure it aligns with the goals of the project. Be sure to also follow our [code of conduct](CODE_OF_CONDUCT.md). Thanks! 
