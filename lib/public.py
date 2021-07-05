@@ -1,4 +1,4 @@
-from lib.capabilities import user_posts, all_posts
+from lib.capabilities import user_activity, all_posts
 from lib.api import ApiClient
 
 
@@ -8,6 +8,6 @@ class PublicClient:
     def __init__(self):
         self.api_client = ApiClient()
 
-        # Initialize all the capabilities
-        self.user_posts = user_posts.UserPosts(self.api_client).pull
+        # Set up capabilities
+        self.user_activity = user_activity.UserActivity(self.api_client).pull
         self.all_posts = all_posts.AllPosts(self.api_client).pull
