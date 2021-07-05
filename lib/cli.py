@@ -77,3 +77,11 @@ def trends(max: int = None, until: str = None):
     """Pull all the trends (posts displayed on the home page)."""
     for post in client.trends(max=max, until=until):
         print(json.dumps(post))
+
+
+@cli.command()
+@click.option("--max", help="the maximum number of users to pull", type=int)
+def suggested(max: int = None):
+    """Pull the suggested users (users displayed on the home page)."""
+    for user in client.suggested(max=max):
+        print(json.dumps(user))

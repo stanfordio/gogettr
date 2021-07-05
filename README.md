@@ -62,6 +62,8 @@ Options:
 
 Commands:
   all-posts       Pull all posts sequentially.
+  suggested       Pull the suggested users (users displayed on the home...
+  trends          Pull all the trends (posts displayed on the home page).
   user            Pull the posts, likes, or comments made by a user.
   user-followers  Pull all a user's followers.
   user-following  Pull all users a given user follows.
@@ -82,6 +84,29 @@ Options:
   --rev          increment reverse chronologically (i.e., from last to first)
   --help         Show this message and exit.
 ```
+
+### `suggested`
+
+```
+Usage: gogettr suggested [OPTIONS]
+
+  Pull the suggested users (users displayed on the home page).
+
+Options:
+  --max INTEGER  the maximum number of users to pull
+  --help         Show this message and exit.
+```
+
+### `trends`
+
+Usage: gogettr trends [OPTIONS]
+
+  Pull all the trends (posts displayed on the home page).
+
+Options:
+  --max INTEGER  the maximum number of posts to pull
+  --until TEXT   the ID of the earliest post to pull
+  --help         Show this message and exit.
 
 ### `user`
 
@@ -159,7 +184,6 @@ To access the CLI, run `poetry run gogettr`.
 
 We hope to add support for the following capabilities to GoGettr:
 
-- [ ] Pull trends
 - [ ] Pull suggested users
 - [ ] Pull all comments for a post
 - [ ] Pull all comments on the platform

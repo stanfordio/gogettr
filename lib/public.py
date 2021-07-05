@@ -4,6 +4,7 @@ from lib.capabilities import (
     user_info,
     user_relationships,
     trends,
+    suggested
 )
 from lib.api import ApiClient
 
@@ -22,3 +23,4 @@ class PublicClient:
             self.api_client
         ).pull
         self.trends = trends.Trends(self.api_client).pull
+        self.suggested = suggested.Suggested(self.api_client).pull
