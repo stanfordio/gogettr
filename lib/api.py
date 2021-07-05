@@ -1,6 +1,8 @@
 import logging
+from typing import Iterator
 import requests
 import time
+import itertools
 
 
 class ApiClient:
@@ -31,3 +33,18 @@ class ApiClient:
             return resp.json()[key]
 
         raise RuntimeError("unable to pull from Gettr")
+
+    def get_paginated(
+        self,
+        *args,
+        offset_param: str = "offset",
+        offset_start: int = 0,
+        offset_step: int = 20,
+        **kwargs
+    ) -> Iterator[dict]:
+        """Paginates requests to the given API endpoint."""
+        for i in itertools.count(start=offset_start, step=offset_step):
+            params = kwargs.get("params", {})
+            params[offset_param] = i
+            kwargs["params"] = params
+            yield self.get(*args, **kwargs)
