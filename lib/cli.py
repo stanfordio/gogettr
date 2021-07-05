@@ -37,10 +37,16 @@ def user(username, max: int = None, until: str = None, type: str = None):
     help="increment reverse chronologically (i.e., from last to first)",
     is_flag=True,
 )
-def all_posts(first=None, last=None, max: int = None, rev=False):
-    """Pull all posts sequentially."""
-    for post in client.all_posts(
-        first=first, last=last, max=max, order="down" if rev else "up"
+@click.option(
+    "--type",
+    help="",
+    type=click.Choice(["posts", "comments"]),
+    default="posts",
+)
+def all(first=None, last=None, max: int = None, rev=False, type: str = None):
+    """Pull all posts (or comments) sequentially."""
+    for post in client.all(
+        first=first, last=last, max=max, order="down" if rev else "up", type=type
     ):
         print(json.dumps(post))
 
@@ -85,3 +91,13 @@ def suggested(max: int = None):
     """Pull the suggested users (users displayed on the home page)."""
     for user in client.suggested(max=max):
         print(json.dumps(user))
+
+
+@cli.command()
+@click.option("--max", help="the maximum number of hashtags to pull", type=int)
+def hashtags(max: int = None):
+    """Pull the suggested hashtags (the top suggestions are displayed on the front page).
+
+    Note that while the first five or so hashtags have expanded information associated with them, later results do not."""
+    for hashtag in client.hashtags(max=max):
+        print(json.dumps(hashtag))

@@ -1,14 +1,16 @@
 from typing import Iterator, Literal
 from lib.utils import b36decode, b36encode, merge
 from lib.capabilities.base import Capability
+from lib.errors import GettrApiError
+import logging
 
-
-class AllPosts(Capability):
+class All(Capability):
     def pull(
         self,
         first: str = None,
         last: str = None,
         max: int = None,
+        type: Literal["posts", "comments"] = "posts",
         order: Literal["up", "down"] = "up",
     ) -> Iterator[dict]:
         """Pulls all the posts from the API sequentially.
@@ -16,8 +18,11 @@ class AllPosts(Capability):
         :param str first: the id of the earliest post to include
         :param str last: the id of the last post to include
         :param int max: the maximum number of posts to pull
+        :param str type: whether to pull posts or comments
         :order ["up" | "down"] order: whether to go from first to last (chronological) or last to first (reverse chronological)
         """
+
+        assert type in ["posts", "comments"]
 
         # We remove the first character from the post IDs below because they are always `p` and not part of the numbering scheme
         if order == "up":
@@ -38,13 +43,16 @@ class AllPosts(Capability):
             or (order == "up" and post_id <= end_at)
             or (order == "down" and post_id >= end_at)
         ) and (max is None or n < max):
-            data = self.client.get(
-                f"/u/post/p{b36encode(post_id)}",
-                params={
-                    "incl": "poststats|userinfo",
-                },
-                key="result",
-            )
+            try:
+                data = self.client.get(
+                    f"/u/post/{'p' if type == 'posts' else 'c'}{b36encode(post_id)}",
+                    params={
+                        "incl": "poststats|userinfo|posts|commentstats",
+                    },
+                    key="result",
+                )
+            except GettrApiError as e:
+                logging.warning("Hit API error while pulling: %s", e)
 
             if order == "up":
                 post_id += 1
@@ -61,8 +69,10 @@ class AllPosts(Capability):
                 data["data"],
                 dict(
                     uinf=data["aux"]["uinf"][user_id],
-                    shrdpst=data["aux"]["shrdpst"],
-                    s_pst=data["aux"]["s_pst"],
+                    shrdpst=data["aux"].get("shrdpst"),
+                    s_pst=data["aux"].get("s_pst"),
+                    s_cmst=data["aux"].get("s_cmst"),
+                    post=data["aux"].get("post"),
                 ),
             )
 
