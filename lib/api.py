@@ -31,7 +31,7 @@ class ApiClient:
                 continue
 
             logging.debug("GET %s with params %s yielded %s", url, params, resp.content)
-            
+
             data = resp.json()
             if key in data:
                 return data[key]

@@ -12,7 +12,7 @@ class UserInfo(Capability):
         :param str username: the username of the desired user"""
 
         url = f"/s/uinf/{username}"
-        
+
         data = self.client.get(
             url,
             key="result",
