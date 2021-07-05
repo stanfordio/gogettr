@@ -45,7 +45,7 @@ gogettr all --type comments
 #### Pull all posts (starting at a particular ID and moving backward through IDs)
 
 ```
-gogettr all-posts --rev --last pay8d
+gogettr all --rev --last pay8d
 ```
 
 #### Pull all posts from a user
