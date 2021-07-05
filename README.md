@@ -1,7 +1,7 @@
 # GoGettr
 GoGettr is an extraction tool for GETTR, a "non-bias [sic] social network." (We will not reward their domain with a hyperlink.)
 
-This tool does not currently require any authentication with GETTR; it gathers all its data through publicly accessible endpoints.
+This tool does not currently require any authentication with GETTR; it gathers all its data through publicly accessible endpoints. Our plan is to keep it this way for as long as possible.
 
 Currently, this tool can:
 
@@ -11,6 +11,8 @@ Currently, this tool can:
 ## Robustness
 
 This tool was made by "reverse engineering" GETTR's API. (It wasn't that hard.) Because we have no insight into GETTR's internals, there's no guarantee that this tool provides an exhaustive or reliable export of GETTR content. Still, it does a pretty good job.
+
+Note that GoGettr does barely any formatting or postprocessing of the data returned by the API. That means that if Gettr changes the schema of the data that they return, then so will GoGettr. Don't assume that the structure of GoGettr's responses will remain constant.
 
 ## CLI Playbook
 
@@ -59,9 +61,11 @@ Options:
   --help  Show this message and exit.
 
 Commands:
-  all-posts  Pull all posts sequentially.
-  user       Pull the posts, likes, or comments made by a user.
-  user-info  Pull given user's information.
+  all-posts       Pull all posts sequentially.
+  user            Pull the posts, likes, or comments made by a user.
+  user-followers  Pull all a user's followers.
+  user-following  Pull all users a given user follows.
+  user-info       Pull given user's information.
 ```
 
 ### `all-posts`
@@ -94,6 +98,30 @@ Options:
   --help                         Show this message and exit.
 ```
 
+### `user-followers`
+
+```
+Usage: gogettr user-followers [OPTIONS] USERNAME
+
+  Pull all a user's followers.
+
+Options:
+  --max INTEGER  the maximum number of users to pull
+  --help         Show this message and exit.
+```
+
+### `user-following`
+
+```
+Usage: gogettr user-following [OPTIONS] USERNAME
+
+  Pull all users a given user follows.
+
+Options:
+  --max INTEGER  the maximum number of users to pull
+  --help         Show this message and exit.
+```
+
 ### `user-info`
 
 ```
@@ -115,7 +143,9 @@ client = PublicClient()
 posts = client.user_activity(username="support", type="posts")
 ```
 
-For more examples of using GoGettr as a module, check out the [tests directory](tests/).
+For more examples of using GoGettr as a module, check out the [tests directory](tests/). Note that the API surface can't be considered quite stable yet. In the case that Gettr changes their API, we may refactor our API to match. We'll do our best to make as few public-facing API changes as possible, however.
+
+We've organized GoGettr to group related API functionality into the same capabilities; for example, pulling users' comments, posts, and likes is all done by the same function (inside `user_activity.py`), and pulling followers and following is done by the same function (inside `user_relationships.py`). That means there isn't perfect correspondence between the CLI surface and the API surface.
 
 ## Development
 
@@ -129,8 +159,6 @@ To access the CLI, run `poetry run gogettr`.
 
 We hope to add support for the following capabilities to GoGettr:
 
-- [ ] Pull a user's followers
-- [ ] Pull who a user is following
 - [ ] Pull trends
 - [ ] Pull suggested users
 - [ ] Pull all comments for a post

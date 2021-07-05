@@ -50,3 +50,21 @@ def all_posts(first=None, last=None, max: int = None, rev=False):
 def user_info(username):
     """Pull given user's information."""
     print(json.dumps(client.user_info(username)))
+
+
+@cli.command()
+@click.argument("username")
+@click.option("--max", help="the maximum number of users to pull", type=int)
+def user_followers(username, max: int = None):
+    """Pull all a user's followers."""
+    for user in client.user_relationships(username, max=max, type="followers"):
+        print(json.dumps(user))
+
+
+@cli.command()
+@click.argument("username")
+@click.option("--max", help="the maximum number of users to pull", type=int)
+def user_following(username, max: int = None):
+    """Pull all users a given user follows."""
+    for user in client.user_relationships(username, max=max, type="following"):
+        print(json.dumps(user))

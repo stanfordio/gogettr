@@ -64,5 +64,6 @@ class UserActivity(Capability):
                 yield post
 
             # Check if we've collected the maximum number of posts
+            # Perhaps a duplicate of the above, but if we remove this check then we risk running forever when we run out of results
             if max is not None and max <= n:
                 break
