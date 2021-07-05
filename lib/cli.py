@@ -1,9 +1,15 @@
 import click
 from lib import PublicClient
 import json
+import logging
+
+# Setup logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+log_hander = logging.FileHandler("gogettr.log")
+logger.addHandler(log_hander)
 
 client = PublicClient()
-
 
 @click.group()
 def cli():

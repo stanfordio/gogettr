@@ -18,7 +18,9 @@ class ApiClient:
         tries = 0
 
         while tries < retries:
+            logging.info("Requesting %s (params: %s)...", url, params)
             resp = requests.get(self.api_base_url + url, params=params, timeout=10)
+            logging.info("%s gave response: %s", url, resp.text)
             tries += 1
             if resp.status_code in [429, 500, 502, 503, 504]:
                 logging.warning(
