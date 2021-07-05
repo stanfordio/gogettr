@@ -51,7 +51,9 @@ def user(username, max: int = None, until: str = None, type: str = None):
     default="posts",
 )
 def all(first=None, last=None, max: int = None, rev=False, type: str = None):
-    """Pull all posts (or comments) sequentially."""
+    """Pull all posts (or comments) sequentially.
+
+    Note that if iterating chronologically and both max and last are unset, then this command will run forever (as it will iterate through all post IDs to infinity). To prevent this, either specify a max, last post, or iterate reverse chronologically."""
     for post in client.all(
         first=first, last=last, max=max, order="down" if rev else "up", type=type
     ):

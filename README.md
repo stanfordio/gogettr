@@ -30,16 +30,18 @@ GoGettr is available on PyPI. To install it, simply run `pip install gogettr`. P
 
 ## CLI Playbook
 
-#### Pull all posts (starting at id 1)
+#### Pull all posts (starting at id 1, capped at 1m)
 
 ```
-gogettr all
+gogettr all --max 1000000
 ```
+
+Note that this command will never terminate; 
 
 #### Pull all comments
 
 ```
-gogettr all --type comments
+gogettr all --type comments --max 1000000
 ```
 
 #### Pull all posts (starting at a particular ID and moving backward through IDs)
@@ -75,20 +77,23 @@ gogettr user-info USERNAME
 ## CLI Usage
 
 ```
-Usage: gogettr [OPTIONS] COMMAND [ARGS]...
+Usage: gogettr all [OPTIONS]
+
+  Pull all posts (or comments) sequentially.
+
+  Note that if iterating chronologically and both max and last are unset, then
+  this command will run forever (as it will iterate through all post IDs to
+  infinity). To prevent this, either specify a max, last post, or iterate
+  reverse chronologically.
 
 Options:
-  --help  Show this message and exit.
-
-Commands:
-  all             Pull all posts (or comments) sequentially.
-  hashtags        Pull the suggested hashtags (the top suggestions are...
-  suggested       Pull the suggested users (users displayed on the home...
-  trends          Pull all the trends (posts displayed on the home page).
-  user            Pull the posts, likes, or comments made by a user.
-  user-followers  Pull all a user's followers.
-  user-following  Pull all users a given user follows.
-  user-info       Pull given user's information.
+  --first TEXT             the ID of the first post to pull
+  --last TEXT              the ID of the last post to pull
+  --max INTEGER            the maximum number of posts to pull
+  --rev                    increment reverse chronologically (i.e., from last
+                           to first)
+  --type [posts|comments]
+  --help                   Show this message and exit.
 ```
 
 ### `all`
