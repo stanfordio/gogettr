@@ -11,6 +11,7 @@ logger.addHandler(log_hander)
 
 client = PublicClient()
 
+
 @click.group()
 def cli():
     pass

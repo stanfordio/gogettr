@@ -4,6 +4,7 @@ from lib.capabilities.base import Capability
 from lib.errors import GettrApiError
 import logging
 
+
 class All(Capability):
     def pull(
         self,
