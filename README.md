@@ -36,8 +36,6 @@ GoGettr is available on PyPI. To install it, simply run `pip install gogettr`. P
 gogettr all --max 1000000
 ```
 
-Note that this command will never terminate; 
-
 #### Pull all comments
 
 ```
