@@ -29,7 +29,19 @@ gogettr all-posts --rev --last pay8d
 #### Pull all posts from a user
 
 ```
-gogetter user-posts USERNAME
+gogetter user USERNAME --type posts
+```
+
+#### Pull all comments from a user
+
+```
+gogetter user USERNAME --type comments
+```
+
+#### Pull all likes from a user
+
+```
+gogetter user USERNAME --type likes
 ```
 
 ## CLI Usage
@@ -41,21 +53,23 @@ Options:
   --help  Show this message and exit.
 
 Commands:
-  all-posts   Pull all posts sequentially.
-  user-posts  Pull posts by a user.
+  all-posts  Pull all posts sequentially.
+  user       Pull the posts, likes, or comments made by a user.
 ```
 
-### `user-posts`
+### `user`
 
 ```
-Usage: gogettr user-posts [OPTIONS] USERNAME
+Usage: gogettr user [OPTIONS] USERNAME
 
-  Pull posts by a user.
+  Pull the posts, likes, or comments made by a user.
 
 Options:
-  --max INTEGER  the maximum number of posts to pull
-  --until TEXT   the ID of the earliest post to pull for the user
-  --help         Show this message and exit.
+  --max INTEGER                  the maximum number of activities to pull
+  --until TEXT                   the ID of the earliest activity to pull for
+                                 the user
+  --type [posts|comments|likes]
+  --help                         Show this message and exit.
 ```
 
 ### `all-posts`
@@ -80,7 +94,7 @@ You can use GoGettr as a Python module. For example, here's how you would pull a
 ```python
 from gogettr import PublicClient
 client = PublicClient()
-posts = client.user_posts(username="support")
+posts = client.user_activity(username="support", type="posts")
 ```
 
 For more examples of using GoGettr as a module, check out the [tests directory](tests/).
@@ -97,14 +111,13 @@ To access the CLI, run `poetry run gogettr`.
 
 We hope to add support for the following capabilities to GoGettr:
 
-- [ ] Pull a user's comments
 - [ ] Pull a user's info
-- [ ] Pull a user's likes
 - [ ] Pull a user's followers
 - [ ] Pull who a user is following
+- [ ] Pull trends
+- [ ] Pull suggested users
 - [ ] Pull all comments for a post
 - [ ] Pull all comments on the platform
 - [ ] Pull all users on the platform
-- [ ] Pull trends
-- [ ] Pull suggested users
+- [ ] Search for content
 - [ ] Multithreaded/concurrent API requests for sequential scans (e.g., pulling all posts on the platform)
