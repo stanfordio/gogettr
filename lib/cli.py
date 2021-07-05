@@ -43,3 +43,10 @@ def all_posts(first=None, last=None, max: int = None, rev=False):
         first=first, last=last, max=max, order="down" if rev else "up"
     ):
         print(json.dumps(post))
+
+
+@cli.command()
+@click.argument("username")
+def user_info(username):
+    """Pull given user's information."""
+    print(json.dumps(client.user_info(username)))

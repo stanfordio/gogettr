@@ -29,19 +29,25 @@ gogettr all-posts --rev --last pay8d
 #### Pull all posts from a user
 
 ```
-gogetter user USERNAME --type posts
+gogettr user USERNAME --type posts
 ```
 
 #### Pull all comments from a user
 
 ```
-gogetter user USERNAME --type comments
+gogettr user USERNAME --type comments
 ```
 
 #### Pull all likes from a user
 
 ```
-gogetter user USERNAME --type likes
+gogettr user USERNAME --type likes
+```
+
+#### Pull a user's information
+
+```
+gogettr user-info USERNAME
 ```
 
 ## CLI Usage
@@ -55,6 +61,22 @@ Options:
 Commands:
   all-posts  Pull all posts sequentially.
   user       Pull the posts, likes, or comments made by a user.
+  user-info  Pull given user's information.
+```
+
+### `all-posts`
+
+```
+Usage: gogettr all-posts [OPTIONS]
+
+  Pull all posts sequentially.
+
+Options:
+  --first TEXT   the ID of the first post to pull
+  --last TEXT    the ID of the last post to pull
+  --max INTEGER  the maximum number of posts to pull
+  --rev          increment reverse chronologically (i.e., from last to first)
+  --help         Show this message and exit.
 ```
 
 ### `user`
@@ -72,19 +94,15 @@ Options:
   --help                         Show this message and exit.
 ```
 
-### `all-posts`
+### `user-info`
 
 ```
-Usage: gogettr all-posts [OPTIONS]
+Usage: gogettr user-info [OPTIONS] USERNAME
 
-  Pull all posts sequentially.
+  Pull given user's information.
 
 Options:
-  --first TEXT   the ID of the first post to pull
-  --last TEXT    the ID of the last post to pull
-  --max INTEGER  the maximum number of posts to pull
-  --rev          increment reverse chronologically (i.e., from last to first)
-  --help         Show this message and exit.
+  --help  Show this message and exit.
 ```
 
 ## Module Usage
@@ -111,7 +129,6 @@ To access the CLI, run `poetry run gogettr`.
 
 We hope to add support for the following capabilities to GoGettr:
 
-- [ ] Pull a user's info
 - [ ] Pull a user's followers
 - [ ] Pull who a user is following
 - [ ] Pull trends
