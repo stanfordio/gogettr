@@ -7,10 +7,11 @@ client = PublicClient()
 def test_user_info():
     """Verifies we can extract user info for a simple, known user."""
     resp = client.user_info(username="support")
-    assert resp["nickname"] == "support"
+    print(resp)
+    assert resp["nickname"] == "Support & Help"
     assert resp["username"] == "support"
     assert resp["ousername"] == "support"
-    assert resp["roles"]["infl"]["lvl"] == 5
+    assert resp["infl"] == 5
 
 
 def test_user_info_nonexistent():
