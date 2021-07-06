@@ -16,12 +16,14 @@ class ApiClient:
     ) -> dict:
         """Makes a request to the given API endpoint and returns the 'results' object. Supports retries. Soon will support authentication."""
         tries = 0
+        error = None
 
         while tries < retries:
             logging.info("Requesting %s (params: %s)...", url, params)
             resp = requests.get(self.api_base_url + url, params=params, timeout=10)
             logging.info("%s gave response: %s", url, resp.text)
             tries += 1
+
             if resp.status_code in [429, 500, 502, 503, 504]:
                 logging.warning(
                     "Unable to pull from API; waiting %s seconds before retrying (attempt %s/%s)...",
@@ -30,6 +32,7 @@ class ApiClient:
                     retries,
                 )
                 time.sleep(4 ** tries)
+                error = {"status_code": resp.status_code}
                 continue
 
             logging.debug("GET %s with params %s yielded %s", url, params, resp.content)
@@ -38,9 +41,9 @@ class ApiClient:
             if key in data:
                 return data[key]
             elif "error" in data:
-                raise GettrApiError(data["error"])
+                error = data["error"]
 
-        raise RuntimeError("unable to pull from Gettr")
+        raise GettrApiError(error)
 
     def get_paginated(
         self,
