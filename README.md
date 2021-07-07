@@ -20,7 +20,7 @@ GoGettr is designed for academic research, open source intelligence gathering, a
 
 ## Installation
 
-GoGettr is available on PyPI. To install it, simply run `pip install gogettr`. Provided your `pip` is setup correctly, this will make `gogettr` available both as a command and as a Python package.
+GoGettr is available on PyPI. To install it, simply run `pip install gogettr`. Provided your `pip` is setup correctly, this will make `gogettr` available both as a command and as a Python package. **Note that GoGettr requires Python 3.8 or higher.**
 
 ## CLI Playbook
 
