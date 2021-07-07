@@ -1,8 +1,8 @@
 # GoGettr
 
-GoGettr is an extraction tool for GETTR, a "non-bias [sic] social network." (We will not reward their domain with a hyperlink.) GoGettr is built and maintained by the [Stanford Internet Observatory](https://io.stanford.edu).
+GoGettr is an API client for GETTR, a "non-bias [sic] social network." (We will not reward their domain with a hyperlink.) GoGettr is built and maintained by the [Stanford Internet Observatory](https://io.stanford.edu).
 
-This tool does not currently require any authentication with GETTR; it gathers all its data through publicly accessible endpoints. Our plan is to keep it this way for as long as possible.
+This tool does not currently require any authentication with GETTR; it gathers all its data through publicly accessible endpoints.
 
 Currently, this tool can:
 
@@ -16,7 +16,7 @@ Currently, this tool can:
 * Pull all the users a particular user follows
 * Pull information about any users on the platform
 
-We intend for this tool to be used for academic research, open source intelligence gathering, and data archival. We pull all of the data from the publicly accessible API.
+GoGettr is designed for academic research, open source intelligence gathering, and data archival. It pulls all of the data from the publicly accessible API.
 
 ## Installation
 
@@ -208,9 +208,9 @@ client = PublicClient()
 posts = client.user_activity(username="support", type="posts")
 ```
 
-For more examples of using GoGettr as a module, check out the [tests directory](tests/). Note that the API surface can't be considered quite stable yet. In the case that Gettr changes their API, we may refactor our API to match. We'll do our best to make as few public-facing API changes as possible, however.
+For more examples of using GoGettr as a module, check out the [tests directory](tests/). Note that the API surface can't be considered quite stable yet. In the case that Gettr changes their API, GoGettr's API may change to match (though with as few public-facing API changes as possible, however).
 
-We've organized GoGettr to group related API functionality into the same capabilities; for example, pulling users' comments, posts, and likes is all done by the same function (inside `user_activity.py`), and pulling followers and following is done by the same function (inside `user_relationships.py`). That means there isn't perfect correspondence between the CLI surface and the API surface.
+GoGettr groups related API functionality into the same capabilities; for example, pulling users' comments, posts, and likes is all done by the same function (inside `user_activity.py`), and pulling followers and following is done by the same function (inside `user_relationships.py`). That means there isn't perfect correspondence between the CLI surface and the API surface.
 
 ## Development
 
@@ -224,15 +224,15 @@ To package and release a new version on PyPI, simply create a new release tag on
 
 ## Contributing
 
-We appreciate contributions! For small bug fixes and minor improvements, feel free to just open a PR. For larger changes, please open an issue first so that we can discuss your plan, avoid duplicated work, and ensure it aligns with the goals of the project. Be sure to also follow our [code of conduct](CODE_OF_CONDUCT.md). Thanks! 
+Contributions are encouraged! For small bug fixes and minor improvements, feel free to just open a PR. For larger changes, please open an issue first so that other contributors can discuss your plan, avoid duplicated work, and ensure it aligns with the goals of the project. Be sure to also follow the [code of conduct](CODE_OF_CONDUCT.md). Thanks! 
 
 ## Logging
 
-When run in CLI mode, GoGettr will log extensive debug information to `gogettr.log` (in the working directory). This log will include every single request GoGettr makes, and every single response GoGettr receives. Because it's possible that GoGettr accidentally loses some information when parsing API responses, we recommend keeping this file around just in case.
+When run in CLI mode, GoGettr will log extensive debug information to `gogettr.log` (in the working directory). This log will include every single request GoGettr makes, and every single response GoGettr receives. Because it's possible that GoGettr accidentally loses some information when parsing API responses, consider keeping this file around just in case.
 
 ## Wishlist
 
-We hope to add support for the following capabilities to GoGettr:
+Support for the following capabilities is planned:
 
 - [ ] Pull all comments for a post
 - [ ] Pull all users on the platform
