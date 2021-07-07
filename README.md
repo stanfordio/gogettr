@@ -18,12 +18,6 @@ Currently, this tool can:
 
 We intend for this tool to be used for academic research, open source intelligence gathering, and data archival. We pull all of the data from the publicly accessible API.
 
-## Robustness
-
-This tool was made by "reverse engineering" GETTR's API. (It wasn't that hard.) Because we have no insight into GETTR's internals, there's no guarantee that this tool provides an exhaustive or reliable export of GETTR content. Still, it does a pretty good job.
-
-Note that GoGettr does barely any formatting or postprocessing of the data returned by the API. That means that if Gettr changes the schema of the data that they return, then so will GoGettr. Don't assume that the structure of GoGettr's responses will remain constant.
-
 ## Installation
 
 GoGettr is available on PyPI. To install it, simply run `pip install gogettr`. Provided your `pip` is setup correctly, this will make `gogettr` available both as a command and as a Python package.
