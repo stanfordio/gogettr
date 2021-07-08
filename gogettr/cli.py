@@ -14,6 +14,7 @@ client = PublicClient()
 
 @click.group()
 def cli():
+    """GoGettr is an unauthenticated API client for GETTR."""
     pass
 
 
@@ -110,3 +111,14 @@ def hashtags(max: int = None):
     Note that while the first five or so hashtags have expanded information associated with them, later results do not."""
     for hashtag in client.hashtags(max=max):
         print(json.dumps(hashtag))
+
+
+@cli.command()
+@click.argument("query")
+@click.option("--max", help="the maximum number of posts to pull", type=int)
+def search(query, max: int = None):
+    """Search posts for the given query.
+
+    This is equivalent to putting the query in the GETTR search box and archiving all the posts that result."""
+    for post in client.search(query, max=max):
+        print(json.dumps(post))

@@ -71,12 +71,15 @@ gogettr user-info USERNAME
 ```
 Usage: gogettr [OPTIONS] COMMAND [ARGS]...
 
+  GoGettr is an unauthenticated API client for GETTR.
+
 Options:
   --help  Show this message and exit.
 
 Commands:
   all             Pull all posts (or comments) sequentially.
   hashtags        Pull the suggested hashtags (the top suggestions are...
+  search          Search posts for the given query.
   suggested       Pull the suggested users (users displayed on the home...
   trends          Pull all the trends (posts displayed on the home page).
   user            Pull the posts, likes, or comments made by a user.
@@ -121,6 +124,21 @@ Usage: gogettr hashtags [OPTIONS]
 Options:
   --max INTEGER  the maximum number of hashtags to pull
   --help         Show this message and exit.
+```
+
+### `search`
+
+```
+Usage: gogettr search [OPTIONS] QUERY
+
+  Search posts for the given query.
+
+  This is equivalent to putting the query in the GETTR search box and
+  archiving all the posts that result.
+
+Options:
+  --max INTEGER  the maximum number of posts to pull
+  --help         Show this message and exit
 ```
 
 ### `suggested`
