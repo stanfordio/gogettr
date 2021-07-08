@@ -4,8 +4,10 @@ module."""
 
 import json
 import logging
+
 import click
 import pkg_resources
+
 from gogettr import PublicClient
 
 # Setup logging

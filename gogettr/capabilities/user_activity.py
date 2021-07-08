@@ -1,6 +1,7 @@
 from typing import Iterator, Literal
-from gogettr.utils import merge
+
 from gogettr.capabilities.base import Capability
+from gogettr.utils import merge
 
 
 class UserActivity(Capability):
@@ -11,7 +12,9 @@ class UserActivity(Capability):
         until: str = None,
         type: Literal["posts", "comments", "likes"] = "posts",
     ) -> Iterator[dict]:
-        """Pull the users' posts, comments, and likes from the API. Gettr groups all these different activities under the same API endpoint, so they are grouped here as well.
+        """Pull the users' posts, comments, and likes from the API. Gettr groups all
+        these different activities under the same API endpoint, so they are grouped
+        here as well.
 
         :param str username: the username of the desired user
         :param int max: the maximum number of posts to pull
@@ -23,7 +26,8 @@ class UserActivity(Capability):
         url = f"/u/user/{username}/posts"
         n = 0  # Number of posts emitted
 
-        # There is a fourth option, `f_u`, which for some users seems to return all their activity. It does not seem to work on all users, however.
+        # There is a fourth option, `f_u`, which for some users seems to return
+        # all their activity. It does not seem to work on all users, however.
         if type == "posts":
             fp_setting = "f_uo"
         elif type == "comments":

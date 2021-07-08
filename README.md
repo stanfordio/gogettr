@@ -24,57 +24,58 @@ GoGettr is available on PyPI. To install it, simply run `pip install gogettr`. P
 
 ## CLI Playbook
 
-#### Pull all posts (starting at id 1, capped at 1m)
+**Pull all posts (starting at id 1, capped at 1m)**
 
-```
+```bash
 gogettr all --max 1000000
 ```
 
-#### Pull all comments
+**Pull all comments**
 
-```
+```bash
 gogettr all --type comments --max 1000000
 ```
 
-#### Pull all posts (starting at a particular ID and moving backward through IDs)
+**Pull all posts (starting at a particular ID and moving backward through IDs)**
 
-```
+```bash
 gogettr all --rev --last pay8d
 ```
 
-#### Pull all posts from a user
+**Pull all posts from a user**
 
-```
+```bash
 gogettr user USERNAME --type posts
 ```
 
-#### Pull all comments from a user
+**Pull all comments from a user**
 
-```
+```bash
 gogettr user USERNAME --type comments
 ```
 
-#### Pull all likes from a user
+**Pull all likes from a user**
 
-```
+```bash
 gogettr user USERNAME --type likes
 ```
 
-#### Pull a user's information
+**Pull a user's information**
 
-```
+```bash
 gogettr user-info USERNAME
 ```
 
 ## CLI Usage
 
-```
+```text
 Usage: gogettr [OPTIONS] COMMAND [ARGS]...
 
   GoGettr is an unauthenticated API client for GETTR.
 
 Options:
-  --help  Show this message and exit.
+  --version  Show the version and exit.
+  --help     Show this message and exit.
 
 Commands:
   all             Pull all posts (or comments) sequentially.
@@ -90,7 +91,7 @@ Commands:
 
 ### `all`
 
-```
+```text
 Usage: gogettr all [OPTIONS]
 
   Pull all posts (or comments) sequentially.
@@ -112,7 +113,7 @@ Options:
 
 ### `hashtags`
 
-```
+```text
 Usage: gogettr hashtags [OPTIONS]
 
   Pull the suggested hashtags (the top suggestions are displayed on the front
@@ -128,7 +129,7 @@ Options:
 
 ### `search`
 
-```
+```text
 Usage: gogettr search [OPTIONS] QUERY
 
   Search posts for the given query.
@@ -143,7 +144,7 @@ Options:
 
 ### `suggested`
 
-```
+```text
 Usage: gogettr suggested [OPTIONS]
 
   Pull the suggested users (users displayed on the home page).
@@ -155,7 +156,7 @@ Options:
 
 ### `trends`
 
-```
+```text
 Usage: gogettr trends [OPTIONS]
 
   Pull all the trends (posts displayed on the home page).
@@ -168,7 +169,7 @@ Options:
 
 ### `user`
 
-```
+```text
 Usage: gogettr user [OPTIONS] USERNAME
 
   Pull the posts, likes, or comments made by a user.
@@ -183,7 +184,7 @@ Options:
 
 ### `user-followers`
 
-```
+```text
 Usage: gogettr user-followers [OPTIONS] USERNAME
 
   Pull all a user's followers.
@@ -195,7 +196,7 @@ Options:
 
 ### `user-following`
 
-```
+```text
 Usage: gogettr user-following [OPTIONS] USERNAME
 
   Pull all users a given user follows.
@@ -207,7 +208,7 @@ Options:
 
 ### `user-info`
 
-```
+```text
 Usage: gogettr user-info [OPTIONS] USERNAME
 
   Pull given user's information.
@@ -242,7 +243,7 @@ To package and release a new version on PyPI, simply create a new release tag on
 
 ## Contributing
 
-Contributions are encouraged! For small bug fixes and minor improvements, feel free to just open a PR. For larger changes, please open an issue first so that other contributors can discuss your plan, avoid duplicated work, and ensure it aligns with the goals of the project. Be sure to also follow the [code of conduct](CODE_OF_CONDUCT.md). Thanks! 
+Contributions are encouraged! For small bug fixes and minor improvements, feel free to just open a PR. For larger changes, please open an issue first so that other contributors can discuss your plan, avoid duplicated work, and ensure it aligns with the goals of the project. Be sure to also follow the [code of conduct](CODE_OF_CONDUCT.md). Thanks!
 
 ## Logging
 
@@ -253,5 +254,4 @@ When run in CLI mode, GoGettr will log extensive debug information to `gogettr.l
 Support for the following capabilities is planned:
 
 - [ ] Pull all comments for a post
-- [ ] Search for content
 - [ ] Multithreaded/concurrent API requests for sequential scans (e.g., pulling all posts on the platform)

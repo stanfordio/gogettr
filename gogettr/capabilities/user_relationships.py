@@ -1,4 +1,5 @@
 from typing import Iterator, Literal
+
 from gogettr.capabilities.base import Capability
 
 

@@ -1,3 +1,4 @@
+from typing import Any
 from gogettr.api import ApiClient
 
 
@@ -7,6 +8,6 @@ class Capability:
     def __init__(self, client: ApiClient):
         self.client = client
 
-    def pull(self, *args, **kwargs):
+    def pull(self, *args, **kwargs) -> Any:
         """Pull the desired data from GETTR."""
         raise NotImplementedError

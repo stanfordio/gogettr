@@ -1,7 +1,7 @@
 """Tests for the 'user-info' capability."""
 
-from gogettr.errors import GettrApiError
 from gogettr import PublicClient
+from gogettr.errors import GettrApiError
 
 client = PublicClient()
 

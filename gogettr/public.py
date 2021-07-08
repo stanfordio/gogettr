@@ -3,17 +3,18 @@ unauthenticated GETTR API."""
 # pylint: disable=W0622 # we have variables called "max", "all", etc.
 
 from functools import wraps
+
+from gogettr.api import ApiClient
 from gogettr.capabilities import (
-    user_activity,
     all,
-    user_info,
-    user_relationships,
-    trends,
-    suggested,
     hashtags,
     search,
+    suggested,
+    trends,
+    user_activity,
+    user_info,
+    user_relationships,
 )
-from gogettr.api import ApiClient
 
 
 class PublicClient:

@@ -24,6 +24,6 @@ def b36encode(number: int) -> str:
     return base36 or alphabet[0]
 
 
-def b36decode(number: int):
+def b36decode(number: str) -> int:
     """Convert the base36 number to an integer."""
     return int(number, 36)

@@ -1,4 +1,5 @@
-from typing import Iterator, Literal
+from typing import Iterator
+
 from gogettr.capabilities.base import Capability
 
 

@@ -1,11 +1,13 @@
 """Defines the ApiClient class, which provides a standard interface for interacting with
 the GETTR API."""
 
-import time
 import itertools
 import logging
+import time
 from typing import Callable, Iterator
+
 import requests
+
 from gogettr.errors import GettrApiError
 
 

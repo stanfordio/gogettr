@@ -1,8 +1,9 @@
+import logging
 from typing import Iterator, Literal
-from gogettr.utils import b36decode, b36encode, merge
+
 from gogettr.capabilities.base import Capability
 from gogettr.errors import GettrApiError
-import logging
+from gogettr.utils import b36decode, b36encode, merge
 
 
 class All(Capability):
@@ -20,19 +21,22 @@ class All(Capability):
         :param str last: the id of the last post to include
         :param int max: the maximum number of posts to pull
         :param str type: whether to pull posts or comments
-        :order ["up" | "down"] order: whether to go from first to last (chronological) or last to first (reverse chronological)
+        :order ["up" | "down"] order: whether to go from first to last (chronological)
+            or last to first (reverse chronological)
         """
 
         assert type in ["posts", "comments"]
 
-        # We remove the first character from the post IDs below because they are always `p` and not part of the numbering scheme
+        # We remove the first character from the post IDs below because they are
+        # always `p` and not part of the numbering scheme
         if order == "up":
             post_id = b36decode(first[1:]) if first is not None else 1
             end_at = b36decode(last[1:]) if last is not None else None
         else:
             if last is None:
                 raise ValueError(
-                    "the last post (i.e., the starting post) must be defined when pulling posts reverse chronologically (we need to know where to start!)"
+                    "the last post (i.e., the starting post) must be defined when"
+                    "pulling posts reverse chronologically (we need to know where to start!)"
                 )
             post_id = b36decode(last[1:])
             end_at = b36decode(first[1:]) if first is not None else 1
