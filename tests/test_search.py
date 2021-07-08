@@ -1,3 +1,5 @@
+"""Tests for the 'search' capability."""
+
 from gogettr import PublicClient
 
 client = PublicClient()

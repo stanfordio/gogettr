@@ -1,3 +1,5 @@
+"""Tests for the 'all' capability."""
+
 from gogettr import PublicClient
 
 client = PublicClient()

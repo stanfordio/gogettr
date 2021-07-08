@@ -1,3 +1,5 @@
+"""Tests for the 'user-info' capability."""
+
 from gogettr.errors import GettrApiError
 from gogettr import PublicClient
 
@@ -21,5 +23,5 @@ def test_user_info_nonexistent():
             username="fsjdhflqkdsjfhlaskfjdhlaksdhluweh"
         )  # If someone registers this name, just change the test
         assert False  # This should error
-    except GettrApiError as e:
-        assert e.args[0]["code"] == "E_USER_NOTFOUND"
+    except GettrApiError as err:
+        assert err.issue["code"] == "E_USER_NOTFOUND"

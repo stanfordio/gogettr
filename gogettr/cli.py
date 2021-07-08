@@ -1,8 +1,12 @@
-import click
-from gogettr import PublicClient
+"""Defines the CLI for GoGettr, which is really just a thin wrapper on top of the
+module."""
+# pylint: disable=W0622 # we have variables called "max", "all", etc.
+
 import json
 import logging
+import click
 import pkg_resources
+from gogettr import PublicClient
 
 # Setup logging
 logger = logging.getLogger()
@@ -17,7 +21,6 @@ client = PublicClient()
 @click.version_option(version=pkg_resources.get_distribution("gogettr").version)
 def cli():
     """GoGettr is an unauthenticated API client for GETTR."""
-    pass
 
 
 @cli.command()
@@ -56,7 +59,10 @@ def user(username, max: int = None, until: str = None, type: str = None):
 def all(first=None, last=None, max: int = None, rev=False, type: str = None):
     """Pull all posts (or comments) sequentially.
 
-    Note that if iterating chronologically and both max and last are unset, then this command will run forever (as it will iterate through all post IDs to infinity). To prevent this, either specify a max, last post, or iterate reverse chronologically."""
+    Note that if iterating chronologically and both max and last are unset, then
+    this command will run forever (as it will iterate through all post IDs to
+    infinity). To prevent this, either specify a max, last post, or iterate
+    reverse chronologically."""
     for post in client.all(
         first=first, last=last, max=max, order="down" if rev else "up", type=type
     ):
@@ -75,8 +81,8 @@ def user_info(username):
 @click.option("--max", help="the maximum number of users to pull", type=int)
 def user_followers(username, max: int = None):
     """Pull all a user's followers."""
-    for user in client.user_relationships(username, max=max, type="followers"):
-        print(json.dumps(user))
+    for user_dict in client.user_relationships(username, max=max, type="followers"):
+        print(json.dumps(user_dict))
 
 
 @cli.command()
@@ -84,8 +90,8 @@ def user_followers(username, max: int = None):
 @click.option("--max", help="the maximum number of users to pull", type=int)
 def user_following(username, max: int = None):
     """Pull all users a given user follows."""
-    for user in client.user_relationships(username, max=max, type="following"):
-        print(json.dumps(user))
+    for user_dict in client.user_relationships(username, max=max, type="following"):
+        print(json.dumps(user_dict))
 
 
 @cli.command()
@@ -101,16 +107,18 @@ def trends(max: int = None, until: str = None):
 @click.option("--max", help="the maximum number of users to pull", type=int)
 def suggested(max: int = None):
     """Pull the suggested users (users displayed on the home page)."""
-    for user in client.suggested(max=max):
-        print(json.dumps(user))
+    for user_dict in client.suggested(max=max):
+        print(json.dumps(user_dict))
 
 
 @cli.command()
 @click.option("--max", help="the maximum number of hashtags to pull", type=int)
 def hashtags(max: int = None):
-    """Pull the suggested hashtags (the top suggestions are displayed on the front page).
+    """Pull the suggested hashtags (the top suggestions are displayed on the
+    front page).
 
-    Note that while the first five or so hashtags have expanded information associated with them, later results do not."""
+    Note that while the first five or so hashtags have expanded information
+    associated with them, later results do not."""
     for hashtag in client.hashtags(max=max):
         print(json.dumps(hashtag))
 
@@ -121,6 +129,7 @@ def hashtags(max: int = None):
 def search(query, max: int = None):
     """Search posts for the given query.
 
-    This is equivalent to putting the query in the GETTR search box and archiving all the posts that result."""
+    This is equivalent to putting the query in the GETTR search box and
+    archiving all the posts that result."""
     for post in client.search(query, max=max):
         print(json.dumps(post))

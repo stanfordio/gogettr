@@ -1,3 +1,5 @@
+"""Tests for the 'user_relationships' (following/followers) capability."""
+
 from gogettr import PublicClient
 
 client = PublicClient()

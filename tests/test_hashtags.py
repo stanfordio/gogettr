@@ -1,3 +1,5 @@
+"""Tests for the 'hashtag' capability."""
+
 from gogettr import PublicClient
 
 client = PublicClient()

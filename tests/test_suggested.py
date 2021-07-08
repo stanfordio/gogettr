@@ -1,3 +1,5 @@
+"""Tests for the 'suggested' capability."""
+
 from gogettr import PublicClient
 
 client = PublicClient()

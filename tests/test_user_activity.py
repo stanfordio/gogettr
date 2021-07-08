@@ -1,3 +1,6 @@
+"""Tests for the 'user'/'user-activity' capability."""
+
+
 from gogettr import PublicClient
 
 client = PublicClient()

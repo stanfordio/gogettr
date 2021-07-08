@@ -1,3 +1,5 @@
+"""Tests for the 'trends' capability."""
+
 from gogettr import PublicClient
 
 client = PublicClient()

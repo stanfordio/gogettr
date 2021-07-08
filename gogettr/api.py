@@ -1,12 +1,18 @@
-from gogettr.errors import GettrApiError
+"""Defines the ApiClient class, which provides a standard interface for interacting with
+the GETTR API."""
+
+import time
+import itertools
 import logging
 from typing import Callable, Iterator
 import requests
-import time
-import itertools
+from gogettr.errors import GettrApiError
 
 
 class ApiClient:
+    """A standard and safe way to interact with the GETTR API. Catches errors, supports
+    retries, etc."""
+
     def __init__(self, api_base_url: str = None):
         """Initializes the API client. Optionally takes in a base URL for the GETTR api."""
         self.api_base_url = api_base_url or "https://api.gettr.com"
@@ -14,7 +20,8 @@ class ApiClient:
     def get(
         self, url: str, params: dict = None, retries: int = 3, key: str = "result"
     ) -> dict:
-        """Makes a request to the given API endpoint and returns the 'results' object. Supports retries. Soon will support authentication."""
+        """Makes a request to the given API endpoint and returns the 'results' object.
+        Supports retries. Soon will support authentication."""
         tries = 0
         error = None
 
@@ -26,7 +33,7 @@ class ApiClient:
 
             if resp.status_code in [429, 500, 502, 503, 504]:
                 logging.warning(
-                    "Unable to pull from API; waiting %s seconds before retrying (attempt %s/%s)...",
+                    "Unable to pull from API; waiting %s seconds before retrying (%s/%s)...",
                     4 ** tries,
                     tries,
                     retries,
@@ -40,7 +47,7 @@ class ApiClient:
             data = resp.json()
             if key in data:
                 return data[key]
-            elif "error" in data:
+            if "error" in data:
                 error = data["error"]
 
         raise GettrApiError(error)
