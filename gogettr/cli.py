@@ -2,6 +2,7 @@ import click
 from gogettr import PublicClient
 import json
 import logging
+import pkg_resources
 
 # Setup logging
 logger = logging.getLogger()
@@ -13,6 +14,7 @@ client = PublicClient()
 
 
 @click.group()
+@click.version_option(version=pkg_resources.get_distribution("gogettr").version)
 def cli():
     """GoGettr is an unauthenticated API client for GETTR."""
     pass
