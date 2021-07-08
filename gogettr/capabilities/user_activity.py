@@ -45,10 +45,6 @@ class UserActivity(Capability):
             },
         ):
 
-            # Check if we've run out of posts to pull
-            if len(data["data"]["list"]) == 0:
-                return
-
             for event in data["data"]["list"]:
                 id = event["activity"]["tgt_id"]
 
