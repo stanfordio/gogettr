@@ -6,6 +6,7 @@ from gogettr.capabilities import (
     trends,
     suggested,
     hashtags,
+    search,
 )
 from gogettr.api import ApiClient
 
@@ -26,3 +27,4 @@ class PublicClient:
         self.trends = trends.Trends(self.api_client).pull
         self.suggested = suggested.Suggested(self.api_client).pull
         self.hashtags = hashtags.Hashtags(self.api_client).pull
+        self.search = search.Search(self.api_client).pull
