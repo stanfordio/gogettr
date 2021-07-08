@@ -26,7 +26,6 @@ class PublicClient:
 
     @wraps(user_activity.UserActivity.pull)
     def user_activity(self, *args, **kwargs):
-        """Wrapper for "user_activity"."""
         return user_activity.UserActivity(self.api_client).pull(*args, **kwargs)
 
     @wraps(all.All.pull)

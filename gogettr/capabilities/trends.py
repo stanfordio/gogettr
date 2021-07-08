@@ -1,10 +1,13 @@
 from typing import Iterator
+
 from gogettr.capabilities.base import Capability
 from gogettr.utils import merge
 
 
 class Trends(Capability):
-    def pull(self, max: int = None, until: str = None, lang: str = "en") -> Iterator[dict]:
+    def pull(
+        self, max: int = None, until: str = None, lang: str = "en"
+    ) -> Iterator[dict]:
         """Pull the current Gettr trends. This corresponds to the posts on the homepage.
 
         :param int max: the maximum number of posts to pull
