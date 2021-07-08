@@ -26,8 +26,12 @@ jobs:
       - name: Install Dependencies
         run: poetry install
 
-      - name: Code formatting
-        run: poetry run black . --check
+      - name: Lint codebase
+        uses: github/super-linter@v4
+        env:
+          VALIDATE_ALL_CODEBASE: true
+          DEFAULT_BRANCH: main
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Test with pytest
         run: poetry run pytest
