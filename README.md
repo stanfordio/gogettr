@@ -235,6 +235,5 @@ When run in CLI mode, GoGettr will log extensive debug information to `gogettr.l
 Support for the following capabilities is planned:
 
 - [ ] Pull all comments for a post
-- [ ] Pull all users on the platform
 - [ ] Search for content
 - [ ] Multithreaded/concurrent API requests for sequential scans (e.g., pulling all posts on the platform)
