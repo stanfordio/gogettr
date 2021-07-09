@@ -17,7 +17,7 @@ def extract(obj: dict, path: Iterator[str], default: Any = None):
     """Tries to get the object at `path` out of the object, returning `default`
     if not found."""
     for key in path:
-        if key in obj and isinstance(obj, dict):
+        if isinstance(obj, dict) and key in obj:
             obj = obj[key]
         else:
             return default
