@@ -92,7 +92,7 @@ class All(Capability):
 
     def _pull_post(self, post_id: str) -> dict:
         """Attempt to pull the given post from GETTR."""
-        
+
         try:
             data = self.client.get(
                 f"/u/post/{post_id}",
