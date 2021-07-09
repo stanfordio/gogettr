@@ -5,8 +5,8 @@ from gogettr import PublicClient
 client = PublicClient()
 
 
-post_no_comments = "p2zkgu"
-post_two_comments = "p2zp65"
+POST_NO_COMMENTS = "p2zkgu"
+POST_TWO_COMMENTS = "p2zp65"
 
 
 def test_comments_from_post():
@@ -17,11 +17,11 @@ def test_comments_from_post():
 
 def test_comments_from_post_no_comments():
     """Verifies we can get comments from a post with no comments."""
-    resp = list(client.comments(post_id=post_no_comments, max=3))
+    resp = list(client.comments(post_id=POST_NO_COMMENTS, max=3))
     assert len(resp) == 0
 
 
 def test_comments_from_post_two_comments():
     """Verifies we can get comments from a post with only two comments."""
-    resp = list(client.comments(post_id=post_two_comments, max=3))
+    resp = list(client.comments(post_id=POST_TWO_COMMENTS, max=3))
     assert len(resp) == 2
