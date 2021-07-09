@@ -233,13 +233,13 @@ Options:
 ### `comments`
 
 ```text
-Usage: gogettr comments [OPTIONS] POST ID
+Usage: gogettr comments [OPTIONS] POST_ID
 
-  Pull comments from a post
+  Pull comments on a specific post.
 
 Options:
-  --max INTEGER  the maximum number of users to pull
-  --help  Show this message and exit.
+  --max INTEGER  the maximum number of comments to pull
+  --help         Show this message and exit.
 ```
 
 
