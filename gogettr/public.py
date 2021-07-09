@@ -14,6 +14,7 @@ from gogettr.capabilities import (
     user_activity,
     user_info,
     user_relationships,
+    comments,
 )
 
 
@@ -65,3 +66,8 @@ class PublicClient:
     def search(self, *args, **kwargs):
         """Wrapper for "search"."""
         return search.Search(self.api_client).pull(*args, **kwargs)
+
+    @wraps(comments.Comments.pull)
+    def comments(self, *args, **kwargs):
+        """Wrapper for "comments"."""
+        return comments.Comments(self.api_client).pull(*args, **kwargs)
