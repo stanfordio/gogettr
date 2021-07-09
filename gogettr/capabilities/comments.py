@@ -9,13 +9,13 @@ from gogettr.utils import merge
 
 
 class Comments(Capability):
-    """
-    @param post_id: comment ID from URL slug, as string, eg: "p2vhax"
-    @param max: maximum number of comment posts to pull
-    """
-
     def pull(self, post_id: str, max: int = None) -> Iterator[dict]:
-
+        """
+        Pull comments on a specific post.
+        
+        :param str post_id: ID of the post to pull comments from (e.g., "p2vhax")
+        :param int max: maximum number of comment posts to pull
+        """
         url = "/u/post/%s/comments" % post_id
         n = 0
 
