@@ -1,6 +1,7 @@
 """Defines the CLI for GoGettr, which is really just a thin wrapper on top of the
 module."""
 # pylint: disable=W0622 # we have variables called "max", "all", etc.
+# pylint: disable=R0913 # it's ok for these functions to take many arguments
 
 import json
 import logging
