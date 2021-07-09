@@ -13,7 +13,7 @@ class Comments(Capability):
     def pull(self, post_id: str, max: int = None) -> Iterator[dict]:
         """
         Pull comments on a specific post.
-        
+
         :param str post_id: ID of the post to pull comments from (e.g., "p2vhax")
         :param int max: maximum number of comment posts to pull
         """
