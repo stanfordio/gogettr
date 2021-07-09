@@ -103,6 +103,10 @@ Usage: gogettr all [OPTIONS]
   infinity). To prevent this, either specify a max, last post, or iterate
   reverse chronologically.
 
+  Posts will be pulled in parallel according to the desired number of workers.
+  Out of respect for GETTR's servers, avoid setting the number of workers to
+  values over 50.
+
 Options:
   --first TEXT             the ID of the first post to pull
   --last TEXT              the ID of the last post to pull
@@ -110,6 +114,7 @@ Options:
   --rev                    increment reverse chronologically (i.e., from last
                            to first)
   --type [posts|comments]
+  --workers INTEGER        the number of threads to run in parallel
   --help                   Show this message and exit.
 ```
 
