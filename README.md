@@ -230,19 +230,6 @@ Options:
   --help  Show this message and exit.
 ```
 
-### `comments`
-
-```text
-Usage: gogettr comments [OPTIONS] POST_ID
-
-  Pull comments on a specific post.
-
-Options:
-  --max INTEGER  the maximum number of comments to pull
-  --help         Show this message and exit.
-```
-
-
 ## Module Usage
 
 You can use GoGettr as a Python module. For example, here's how you would pull all a user's posts:
