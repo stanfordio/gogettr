@@ -155,6 +155,7 @@ def search(query, max: int = None):
     for post in client.search(query, max=max):
         print(json.dumps(post))
 
+
 @cli.command()
 @click.option("--max", help="the maximum number of comments to pull", type=int)
 @click.argument("post_id")
@@ -162,4 +163,3 @@ def comments(post_id: str, max: int = None):
     """Pull comments from a specific post ID"""
     for comment in client.comments(post_id=post_id, max=max):
         print(json.dumps(comment))
-
