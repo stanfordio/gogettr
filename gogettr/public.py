@@ -14,7 +14,7 @@ from gogettr.capabilities import (
     user_activity,
     user_info,
     user_relationships,
-    comments
+    comments,
 )
 
 
