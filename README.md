@@ -79,6 +79,7 @@ Options:
 
 Commands:
   all             Pull all posts (or comments) sequentially.
+  comments        Pull comments from a specific post ID
   hashtags        Pull the suggested hashtags (the top suggestions are...
   search          Search posts for the given query.
   suggested       Pull the suggested users (users displayed on the home...
@@ -109,6 +110,18 @@ Options:
                            to first)
   --type [posts|comments]
   --help                   Show this message and exit.
+```
+
+### `comments`
+
+```text
+Usage: gogettr comments [OPTIONS] POST_ID
+
+  Pull comments on a specific post.
+
+Options:
+  --max INTEGER  the maximum number of comments to pull
+  --help         Show this message and exit.
 ```
 
 ### `hashtags`
@@ -220,13 +233,13 @@ Options:
 ### `comments`
 
 ```text
-Usage: gogettr comments [OPTIONS] POST ID
+Usage: gogettr comments [OPTIONS] POST_ID
 
-  Pull comments from a post
+  Pull comments on a specific post.
 
 Options:
-  --max INTEGER  the maximum number of users to pull
-  --help  Show this message and exit.
+  --max INTEGER  the maximum number of comments to pull
+  --help         Show this message and exit.
 ```
 
 
@@ -266,5 +279,4 @@ When run in CLI mode, GoGettr will log extensive debug information to `gogettr.l
 
 Support for the following capabilities is planned:
 
-- [x] Pull all comments for a post
 - [ ] Multithreaded/concurrent API requests for sequential scans (e.g., pulling all posts on the platform)
