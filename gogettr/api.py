@@ -11,6 +11,7 @@ from requests.exceptions import ReadTimeout
 
 from gogettr.errors import GettrApiError
 
+USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 
 class ApiClient:
     """A standard and safe way to interact with the GETTR API. Catches errors, supports
@@ -45,7 +46,9 @@ class ApiClient:
             tries += 1
 
             try:
-                resp = requests.get(self.api_base_url + url, params=params, timeout=10)
+                resp = requests.get(self.api_base_url + url, params=params, timeout=10, headers={
+                    "User-Agent": USER_AGENT
+                })
             except ReadTimeout as e:
                 handle_error({"timeout": e})
                 continue
