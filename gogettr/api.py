@@ -7,6 +7,7 @@ import time
 from typing import Callable, Iterator
 
 import requests
+from requests.exceptions import ReadTimeout
 
 from gogettr.errors import GettrApiError
 
@@ -27,21 +28,32 @@ class ApiClient:
         tries = 0
         error = None
 
+        def handle_error(issue):
+            global error
+            logging.warning(
+                "Unable to pull from API: %s. Waiting %s seconds before retrying (%s/%s)...",
+                issue,
+                4 ** tries,
+                tries,
+                retries,
+            )
+            time.sleep(4 ** tries)
+            error = issue
+
         while tries < retries:
             logging.info("Requesting %s (params: %s)...", url, params)
-            resp = requests.get(self.api_base_url + url, params=params, timeout=10)
-            logging.info("%s gave response: %s", url, resp.text)
             tries += 1
 
+            try:
+                resp = requests.get(self.api_base_url + url, params=params, timeout=10)
+            except ReadTimeout as e:
+                handle_error({"timeout": e})
+                continue
+
+            logging.info("%s gave response: %s", url, resp.text)
+
             if resp.status_code in [429, 500, 502, 503, 504]:
-                logging.warning(
-                    "Unable to pull from API; waiting %s seconds before retrying (%s/%s)...",
-                    4 ** tries,
-                    tries,
-                    retries,
-                )
-                time.sleep(4 ** tries)
-                error = {"status_code": resp.status_code}
+                handle_error({"status_code": resp.status_code})
                 continue
 
             logging.debug("GET %s with params %s yielded %s", url, params, resp.content)
