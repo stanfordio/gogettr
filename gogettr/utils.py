@@ -1,6 +1,9 @@
 """Defines small utility functions to be used internally in GoGettr."""
 
 
+from typing import Any
+
+
 def merge(*dicts):
     """Merges the given dictionaries into a single dictionary, ignoring overlapping keys."""
 
@@ -9,6 +12,17 @@ def merge(*dicts):
         for (key, val) in dictionary.items():
             out[key] = val
     return out
+
+
+def extract(obj: dict, path: list[str], default: Any = None):
+    """Tries to get the object at `path` out of the object, returning `default`
+    if not found."""
+    for key in path:
+        if key in obj and isinstance(obj, dict):
+            obj = obj[key]
+        else:
+            return default
+    return obj
 
 
 # Following two functions adapted from

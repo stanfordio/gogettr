@@ -6,7 +6,7 @@ from typing import Iterator, Literal
 
 from gogettr.capabilities.base import Capability
 from gogettr.errors import GettrApiError
-from gogettr.utils import b36decode, b36encode, merge
+from gogettr.utils import b36decode, b36encode, extract, merge
 
 
 class All(Capability):
@@ -110,16 +110,19 @@ class All(Capability):
             logging.info("Post %s not found...", post_id)
             return
 
+        user_id = extract(data, ["data", "uid"])
+        if user_id is None:
+            return
+
         # At this point we know the post exists. Let's assemble and return it.
-        user_id = data["data"]["uid"]
         post = merge(
             data["data"],
             dict(
-                uinf=data["aux"]["uinf"].get(user_id),
-                shrdpst=data["aux"].get("shrdpst"),
-                s_pst=data["aux"].get("s_pst"),
-                s_cmst=data["aux"].get("s_cmst"),
-                post=data["aux"].get("post"),
+                uinf=extract(data, ["aux", "uinf", user_id]),
+                shrdpst=extract(data, ["aux", "shrdpst"]),
+                s_pst=extract(data, ["aux", "s_pst"]),
+                s_cmst=extract(data, ["aux", "s_cmst"]),
+                post=extract(data, ["aux", "post"]),
             ),
         )
 
