@@ -1,3 +1,4 @@
+import logging
 from typing import Iterator
 
 from gogettr.capabilities.base import Capability
@@ -26,7 +27,14 @@ class Search(Capability):
                 id = event["activity"]["tgt_id"]
                 user = event["activity"]["src_id"]
 
-                # Information about posts is spread across three objects, so we merge them together here.
+                if id not in data["aux"]["post"]:
+                    # Should we check `s_pst` too? It seems we usually don't need to, but
+                    # worth investigating further.
+                    logging.warning("Unable to find post data for post %s", id)
+                    continue
+
+                # Information about posts is spread across three objects, so we merge them
+                # together here.
                 post = merge(
                     event,
                     data["aux"]["post"][id],
