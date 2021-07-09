@@ -1,6 +1,7 @@
 """
-Pull comments from a specific Gettr post
-@author Konrad Iturbe
+Pull comments from a specific GETTR post.
+
+:author: Konrad Iturbe
 """
 from typing import Iterator
 
