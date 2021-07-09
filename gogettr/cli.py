@@ -58,15 +58,33 @@ def user(username, max: int = None, until: str = None, type: str = None):
     type=click.Choice(["posts", "comments"]),
     default="posts",
 )
-def all(first=None, last=None, max: int = None, rev=False, type: str = None):
+@click.option(
+    "--workers", help="the number of threads to run in parallel", type=int, default=10
+)
+def all(
+    first=None,
+    last=None,
+    max: int = None,
+    rev=False,
+    type: str = None,
+    workers: int = None,
+):
     """Pull all posts (or comments) sequentially.
 
     Note that if iterating chronologically and both max and last are unset, then
     this command will run forever (as it will iterate through all post IDs to
     infinity). To prevent this, either specify a max, last post, or iterate
-    reverse chronologically."""
+    reverse chronologically.
+
+    Posts will be pulled in parallel according to the desired number of workers. Out of respect
+    for GETTR's servers, avoid setting the number of workers to values over 50."""
     for post in client.all(
-        first=first, last=last, max=max, order="down" if rev else "up", type=type
+        first=first,
+        last=last,
+        max=max,
+        order="down" if rev else "up",
+        type=type,
+        workers=workers,
     ):
         print(json.dumps(post))
 

@@ -1,3 +1,6 @@
+from concurrent.futures import ThreadPoolExecutor
+from itertools import count, islice
+from collections import deque
 import logging
 from typing import Iterator, Literal
 
@@ -14,6 +17,7 @@ class All(Capability):
         max: int = None,
         type: Literal["posts", "comments"] = "posts",
         order: Literal["up", "down"] = "up",
+        workers: int = 10,
     ) -> Iterator[dict]:
         """Pulls all the posts from the API sequentially.
 
@@ -23,14 +27,53 @@ class All(Capability):
         :param str type: whether to pull posts or comments
         :order ["up" | "down"] order: whether to go from first to last (chronological)
             or last to first (reverse chronological)
+        :param int workers: number of workers to run in parallel threads
         """
 
         assert type in ["posts", "comments"]
 
+        n = 0  # How many posts we've emitted
+        post_ids = self._post_id_generator(first, last, type, order)
+
+        with ThreadPoolExecutor(max_workers=workers) as ex:
+            # Submit initial work
+            futures = deque(
+                ex.submit(self._pull_post, post_id)
+                for post_id in islice(post_ids, workers * 2)
+            )
+
+            while futures:
+                result = futures.popleft().result()
+
+                # Yield the result if it's valid
+                if result is not None:
+                    n += 1
+                    yield result
+
+                # Exit if we've hit the max number of posts
+                if max is not None and n >= max:
+                    return
+
+                # Schedule more work, if available
+                try:
+                    futures.append(ex.submit(self._pull_post, next(post_ids)))
+                except StopIteration:
+                    # No more unscheduled post IDs to process
+                    pass
+
+    def _post_id_generator(
+        self,
+        first: str = None,
+        last: str = None,
+        type: Literal["posts", "comments"] = "posts",
+        order: Literal["up", "down"] = "up",
+    ) -> Iterator[str]:
+        """Returns a generator of GETTR post IDs to pull."""
+
         # We remove the first character from the post IDs below because they are
         # always `p` and not part of the numbering scheme
         if order == "up":
-            post_id = b36decode(first[1:]) if first is not None else 1
+            start_at = b36decode(first[1:]) if first is not None else 1
             end_at = b36decode(last[1:]) if last is not None else None
         else:
             if last is None:
@@ -38,48 +81,46 @@ class All(Capability):
                     "the last post (i.e., the starting post) must be defined when"
                     "pulling posts reverse chronologically (we need to know where to start!)"
                 )
-            post_id = b36decode(last[1:])
+            start_at = b36decode(last[1:])
             end_at = b36decode(first[1:]) if first is not None else 1
 
-        n = 0  # How many posts we've emitted
+        for id in count(start_at, 1 if order == "up" else -1):
+            yield ("p" if type == "posts" else "c") + b36encode(id)
 
-        while (
-            end_at is None
-            or (order == "up" and post_id <= end_at)
-            or (order == "down" and post_id >= end_at)
-        ) and (max is None or n < max):
-            try:
-                data = self.client.get(
-                    f"/u/post/{'p' if type == 'posts' else 'c'}{b36encode(post_id)}",
-                    params={
-                        "incl": "poststats|userinfo|posts|commentstats",
-                    },
-                    key="result",
-                )
-            except GettrApiError as e:
-                logging.warning("Hit API error while pulling: %s", e)
+            if end_at is not None and id == end_at:
+                return
 
-            if order == "up":
-                post_id += 1
-            else:
-                post_id -= 1
-
-            if data["data"]["txt"] == "Content Not Found":
-                # Yes, this is how they do it. It's just a string.
-                continue
-
-            # At this point we know the post exists. Let's assemble and yield it.
-            user_id = data["data"]["uid"]
-            post = merge(
-                data["data"],
-                dict(
-                    uinf=data["aux"]["uinf"][user_id],
-                    shrdpst=data["aux"].get("shrdpst"),
-                    s_pst=data["aux"].get("s_pst"),
-                    s_cmst=data["aux"].get("s_cmst"),
-                    post=data["aux"].get("post"),
-                ),
+    def _pull_post(self, post_id: str) -> dict:
+        """Attempt to pull the given post from GETTR."""
+        
+        try:
+            data = self.client.get(
+                f"/u/post/{post_id}",
+                params={
+                    "incl": "poststats|userinfo|posts|commentstats",
+                },
+                key="result",
             )
+        except GettrApiError as e:
+            logging.warning("Hit API error while pulling: %s", e)
+            return
 
-            n += 1
-            yield post
+        if data["data"]["txt"] == "Content Not Found":
+            # Yes, this is how they do it. It's just a string.
+            logging.info("Post %s not found...", post_id)
+            return
+
+        # At this point we know the post exists. Let's assemble and return it.
+        user_id = data["data"]["uid"]
+        post = merge(
+            data["data"],
+            dict(
+                uinf=data["aux"]["uinf"][user_id],
+                shrdpst=data["aux"].get("shrdpst"),
+                s_pst=data["aux"].get("s_pst"),
+                s_cmst=data["aux"].get("s_cmst"),
+                post=data["aux"].get("post"),
+            ),
+        )
+
+        return post
