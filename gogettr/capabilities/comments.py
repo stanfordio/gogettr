@@ -17,14 +17,13 @@ class Comments(Capability):
         :param str post_id: ID of the post to pull comments from (e.g., "p2vhax")
         :param int max: maximum number of comment posts to pull
         """
-        url = "/u/post/%s/comments" % post_id
+        url = f"/u/post/{post_id}/comments"
         n = 0
 
         for data in self.client.get_paginated(
             url,
             params={
                 "max": 20,
-                "offset": "0",
                 "dir": "rev",
                 "incl": "posts|stats|userinfo|shared|liked",
             },
@@ -36,5 +35,5 @@ class Comments(Capability):
 
                 n += 1
                 yield merge(
-                    dict(comment=comment), data["aux"]["s_cmst"][comment["_id"]]
+                    comment, dict(s_cmst=data["aux"]["s_cmst"][comment["_id"]])
                 )  # Merge Engagement data with content

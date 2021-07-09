@@ -14,6 +14,7 @@ Currently, this tool can:
 * Pull all the posts and/or comments of a user on the platform
 * Pull all a users' followers
 * Pull all the users a particular user follows
+* Pull all the comments on a particular posts
 * Pull information about any users on the platform
 
 GoGettr is designed for academic research, open source intelligence gathering, and data archival. It pulls all of the data from the publicly accessible API.
@@ -79,7 +80,7 @@ Options:
 
 Commands:
   all             Pull all posts (or comments) sequentially.
-  comments        Pull comments from a specific post ID
+  comments        Pull comments on a specific post.
   hashtags        Pull the suggested hashtags (the top suggestions are...
   search          Search posts for the given query.
   suggested       Pull the suggested users (users displayed on the home...
