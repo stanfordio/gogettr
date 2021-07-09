@@ -31,7 +31,7 @@ class ApiClient:
         """Makes a request to the given API endpoint and returns the 'results' object.
         Supports retries. Soon will support authentication."""
         tries = 0
-        errors = [] # keeps track of the errors we've encountered
+        errors = []  # keeps track of the errors we've encountered
 
         def handle_error(issue):
             logging.warning(
@@ -72,9 +72,9 @@ class ApiClient:
                 return data[key]
 
             # Couldn't find the key, so it's an error.
-            errors.append(data) # Retry but without sleep.
+            errors.append(data)  # Retry but without sleep.
 
-        raise GettrApiError(errors[-1]) # Throw with most recent error
+        raise GettrApiError(errors[-1])  # Throw with most recent error
 
     def get_paginated(
         self,
