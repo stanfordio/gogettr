@@ -1,7 +1,6 @@
 """Defines small utility functions to be used internally in GoGettr."""
 
-
-from typing import Any
+from typing import Any, Iterator
 
 
 def merge(*dicts):
@@ -14,7 +13,7 @@ def merge(*dicts):
     return out
 
 
-def extract(obj: dict, path: list[str], default: Any = None):
+def extract(obj: dict, path: Iterator[str], default: Any = None):
     """Tries to get the object at `path` out of the object, returning `default`
     if not found."""
     for key in path:
