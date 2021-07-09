@@ -11,7 +11,11 @@ from requests.exceptions import ReadTimeout
 
 from gogettr.errors import GettrApiError
 
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+USER_AGENT = (
+    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    "(KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+)
+
 
 class ApiClient:
     """A standard and safe way to interact with the GETTR API. Catches errors, supports
@@ -27,10 +31,9 @@ class ApiClient:
         """Makes a request to the given API endpoint and returns the 'results' object.
         Supports retries. Soon will support authentication."""
         tries = 0
-        error = None
+        errors = [] # keeps track of the errors we've encountered
 
         def handle_error(issue):
-            global error
             logging.warning(
                 "Unable to pull from API: %s. Waiting %s seconds before retrying (%s/%s)...",
                 issue,
@@ -39,18 +42,21 @@ class ApiClient:
                 retries,
             )
             time.sleep(4 ** tries)
-            error = issue
+            errors.append(issue)
 
         while tries < retries:
             logging.info("Requesting %s (params: %s)...", url, params)
             tries += 1
 
             try:
-                resp = requests.get(self.api_base_url + url, params=params, timeout=10, headers={
-                    "User-Agent": USER_AGENT
-                })
-            except ReadTimeout as e:
-                handle_error({"timeout": e})
+                resp = requests.get(
+                    self.api_base_url + url,
+                    params=params,
+                    timeout=10,
+                    headers={"User-Agent": USER_AGENT},
+                )
+            except ReadTimeout as err:
+                handle_error({"timeout": err})
                 continue
 
             logging.info("%s gave response: %s", url, resp.text)
@@ -64,10 +70,11 @@ class ApiClient:
             data = resp.json()
             if key in data:
                 return data[key]
-            if "error" in data:
-                error = data["error"]
 
-        raise GettrApiError(error)
+            # Couldn't find the key, so it's an error.
+            errors.append(data) # Retry but without sleep.
+
+        raise GettrApiError(errors[-1]) # Throw with most recent error
 
     def get_paginated(
         self,
