@@ -28,4 +28,4 @@ class Hashtags(Capability):
                     return
 
                 n += 1
-                yield merge(dict(hashtag=hashtag), data["aux"]["htinfo"][hashtag])
+                yield merge(dict(hashtag=hashtag), data["aux"]["htinfo"].get(hashtag))

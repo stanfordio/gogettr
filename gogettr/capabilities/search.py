@@ -37,9 +37,9 @@ class Search(Capability):
                 # together here.
                 post = merge(
                     event,
-                    data["aux"]["post"][id],
-                    data["aux"]["s_pst"][id],
-                    dict(uinf=data["aux"]["uinf"][user]),
+                    data["aux"]["post"].get(id),
+                    data["aux"]["s_pst"].get(id),
+                    dict(uinf=data["aux"]["uinf"].get(user)),
                 )
 
                 # Verify that we haven't passed the max number of posts

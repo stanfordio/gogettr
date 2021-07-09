@@ -31,9 +31,9 @@ class Trends(Capability):
                 # Information about posts is spread across four objects, so we merge them together here.
                 post = merge(
                     post,
-                    data["aux"]["post"][id],
-                    data["aux"]["s_pst"][id],
-                    {"uinf": data["aux"]["uinf"][post["activity"]["tgt_oid"]]},
+                    data["aux"]["post"].get(id),
+                    data["aux"]["s_pst"].get(id),
+                    {"uinf": data["aux"]["uinf"].get(post["activity"]["tgt_oid"])},
                 )
 
                 # Verify that we haven't passed the `until` post

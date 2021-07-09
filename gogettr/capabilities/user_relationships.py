@@ -45,4 +45,4 @@ class UserRelationships(Capability):
                     return
 
                 n += 1
-                yield data["aux"]["uinf"][username]
+                yield data["aux"]["uinf"].get(username)

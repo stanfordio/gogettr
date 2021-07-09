@@ -49,7 +49,9 @@ class UserActivity(Capability):
                 id = event["activity"]["tgt_id"]
 
                 # Information about posts is spread across three objects, so we merge them together here.
-                post = merge(event, data["aux"]["post"][id], data["aux"]["s_pst"][id])
+                post = merge(
+                    event, data["aux"]["post"].get(id), data["aux"]["s_pst"].get(id)
+                )
 
                 # Verify that we haven't passed the `until` post
                 if until is not None and until > id:

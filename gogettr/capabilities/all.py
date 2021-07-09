@@ -115,7 +115,7 @@ class All(Capability):
         post = merge(
             data["data"],
             dict(
-                uinf=data["aux"]["uinf"][user_id],
+                uinf=data["aux"]["uinf"].get(user_id),
                 shrdpst=data["aux"].get("shrdpst"),
                 s_pst=data["aux"].get("s_pst"),
                 s_cmst=data["aux"].get("s_cmst"),
