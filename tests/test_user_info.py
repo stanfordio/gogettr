@@ -24,4 +24,4 @@ def test_user_info_nonexistent():
         )  # If someone registers this name, just change the test
         assert False  # This should error
     except GettrApiError as err:
-        assert err.issue["code"] == "E_USER_NOTFOUND"
+        assert err.issue["error"]["code"] == "E_USER_NOTFOUND"
