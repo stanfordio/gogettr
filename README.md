@@ -217,6 +217,19 @@ Options:
   --help  Show this message and exit.
 ```
 
+### `comments`
+
+```text
+Usage: gogettr comments [OPTIONS] POST ID
+
+  Pull comments from a post
+
+Options:
+  --max INTEGER  the maximum number of users to pull
+  --help  Show this message and exit.
+```
+
+
 ## Module Usage
 
 You can use GoGettr as a Python module. For example, here's how you would pull all a user's posts:
@@ -253,5 +266,5 @@ When run in CLI mode, GoGettr will log extensive debug information to `gogettr.l
 
 Support for the following capabilities is planned:
 
-- [ ] Pull all comments for a post
+- [x] Pull all comments for a post
 - [ ] Multithreaded/concurrent API requests for sequential scans (e.g., pulling all posts on the platform)
