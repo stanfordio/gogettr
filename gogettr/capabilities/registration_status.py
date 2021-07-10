@@ -1,5 +1,4 @@
 from gogettr.capabilities.base import Capability
-from gogettr.utils import merge
 
 
 class RegistrationStatus(Capability):
