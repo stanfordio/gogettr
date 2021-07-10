@@ -163,3 +163,11 @@ def comments(post_id: str, max: int = None):
     """Pull comments on a specific post."""
     for comment in client.comments(post_id=post_id, max=max):
         print(json.dumps(comment))
+
+
+@cli.command()
+@click.argument("username")
+def check_username(username: str):
+    """Check if username exists."""
+    r = client.is_registered(username=username)
+    print("Username %s" % ("exists" if r else "does not exist"))

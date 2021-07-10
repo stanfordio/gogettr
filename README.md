@@ -80,6 +80,7 @@ Options:
 
 Commands:
   all             Pull all posts (or comments) sequentially.
+  check-username  Check if username exists.
   comments        Pull comments on a specific post.
   hashtags        Pull the suggested hashtags (the top suggestions are...
   search          Search posts for the given query.
@@ -116,6 +117,17 @@ Options:
   --type [posts|comments]
   --workers INTEGER        the number of threads to run in parallel
   --help                   Show this message and exit.
+```
+
+### `check-username`
+
+```text
+Usage: gogettr check-username [OPTIONS] USERNAME
+
+  Check if username exists.
+
+Options:
+  --help         Show this message and exit.
 ```
 
 ### `comments`
