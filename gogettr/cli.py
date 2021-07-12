@@ -170,4 +170,4 @@ def comments(post_id: str, max: int = None):
 def check_username(username: str):
     """Check if username exists."""
     r = client.is_registered(username=username)
-    print("Username %s" % ("exists" if r else "does not exist"))
+    print(json.dumps(r))
