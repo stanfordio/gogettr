@@ -115,6 +115,7 @@ Options:
                            to first)
   --type [posts|comments]
   --workers INTEGER        the number of threads to run in parallel
+  --not_ensure_ascii       Allow for non-ASCII output
   --help                   Show this message and exit.
 ```
 
@@ -126,8 +127,9 @@ Usage: gogettr comments [OPTIONS] POST_ID
   Pull comments on a specific post.
 
 Options:
-  --max INTEGER  the maximum number of comments to pull
-  --help         Show this message and exit.
+  --max INTEGER       the maximum number of comments to pull
+  --not_ensure_ascii  Allow for non-ASCII output
+  --help              Show this message and exit.
 ```
 
 ### `hashtags`
@@ -142,8 +144,9 @@ Usage: gogettr hashtags [OPTIONS]
   associated with them, later results do not.
 
 Options:
-  --max INTEGER  the maximum number of hashtags to pull
-  --help         Show this message and exit.
+  --max INTEGER       the maximum number of hashtags to pull
+  --not_ensure_ascii  Allow for non-ASCII output
+  --help              Show this message and exit.
 ```
 
 ### `search`
@@ -157,8 +160,9 @@ Usage: gogettr search [OPTIONS] QUERY
   archiving all the posts that result.
 
 Options:
-  --max INTEGER  the maximum number of posts to pull
-  --help         Show this message and exit
+  --max INTEGER       the maximum number of posts to pull
+  --not_ensure_ascii  Allow for non-ASCII output
+  --help              Show this message and exit.
 ```
 
 ### `suggested`
@@ -169,8 +173,9 @@ Usage: gogettr suggested [OPTIONS]
   Pull the suggested users (users displayed on the home page).
 
 Options:
-  --max INTEGER  the maximum number of users to pull
-  --help         Show this message and exit.
+  --max INTEGER       the maximum number of users to pull
+  --not_ensure_ascii  Allow for non-ASCII output
+  --help              Show this message and exit.
 ```
 
 ### `trends`
@@ -181,9 +186,10 @@ Usage: gogettr trends [OPTIONS]
   Pull all the trends (posts displayed on the home page).
 
 Options:
-  --max INTEGER  the maximum number of posts to pull
-  --until TEXT   the ID of the earliest post to pull
-  --help         Show this message and exit.
+  --max INTEGER       the maximum number of posts to pull
+  --until TEXT        the ID of the earliest post to pull
+  --not_ensure_ascii  Allow for non-ASCII output
+  --help              Show this message and exit.
 ```
 
 ### `user`
@@ -198,6 +204,7 @@ Options:
   --until TEXT                   the ID of the earliest activity to pull for
                                  the user
   --type [posts|comments|likes]
+  --not_ensure_ascii             Allow for non-ASCII output
   --help                         Show this message and exit.
 ```
 
@@ -209,8 +216,9 @@ Usage: gogettr user-followers [OPTIONS] USERNAME
   Pull all a user's followers.
 
 Options:
-  --max INTEGER  the maximum number of users to pull
-  --help         Show this message and exit.
+  --max INTEGER       the maximum number of users to pull
+  --not_ensure_ascii  Allow for non-ASCII output
+  --help              Show this message and exit.
 ```
 
 ### `user-following`
@@ -221,8 +229,9 @@ Usage: gogettr user-following [OPTIONS] USERNAME
   Pull all users a given user follows.
 
 Options:
-  --max INTEGER  the maximum number of users to pull
-  --help         Show this message and exit.
+  --max INTEGER       the maximum number of users to pull
+  --not_ensure_ascii  Allow for non-ASCII output
+  --help              Show this message and exit.
 ```
 
 ### `user-info`
@@ -233,7 +242,8 @@ Usage: gogettr user-info [OPTIONS] USERNAME
   Pull given user's information.
 
 Options:
-  --help  Show this message and exit.
+  --not_ensure_ascii  Allow for non-ASCII output
+  --help              Show this message and exit.
 ```
 
 ## Module Usage
