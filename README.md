@@ -80,7 +80,7 @@ Options:
 
 Commands:
   all             Pull all posts (or comments) sequentially.
-  check-username  Check if username exists.
+  registered      Check if username exists.
   comments        Pull comments on a specific post.
   hashtags        Pull the suggested hashtags (the top suggestions are...
   search          Search posts for the given query.
@@ -119,10 +119,10 @@ Options:
   --help                   Show this message and exit.
 ```
 
-### `check-username`
+### `registered`
 
 ```text
-Usage: gogettr check-username [OPTIONS] USERNAME
+Usage: gogettr registered [OPTIONS] USERNAME
 
   Check if username exists.
 

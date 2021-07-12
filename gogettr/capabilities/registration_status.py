@@ -2,7 +2,7 @@ from gogettr.capabilities.base import Capability
 
 
 class RegistrationStatus(Capability):
-    def is_registered(
+    def pull(
         self,
         username: str,
     ) -> bool:

@@ -167,7 +167,7 @@ def comments(post_id: str, max: int = None):
 
 @cli.command()
 @click.argument("username")
-def check_username(username: str):
+def registered(username: str):
     """Check if username exists."""
     r = client.is_registered(username=username)
     print(json.dumps(r))

@@ -73,9 +73,9 @@ class PublicClient:
         """Wrapper for "comments"."""
         return comments.Comments(self.api_client).pull(*args, **kwargs)
 
-    @wraps(registration_status.RegistrationStatus.is_registered)
+    @wraps(registration_status.RegistrationStatus.pull)
     def is_registered(self, *args, **kwargs):
         """Wrapper for "is_registered"."""
-        return registration_status.RegistrationStatus(self.api_client).is_registered(
+        return registration_status.RegistrationStatus(self.api_client).pull(
             *args, **kwargs
         )
