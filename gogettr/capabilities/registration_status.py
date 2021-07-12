@@ -15,4 +15,4 @@ class RegistrationStatus(Capability):
         data = self.client.get(
             url,
         )
-        return data
+        return dict(username=username, registered=data)
