@@ -6,7 +6,7 @@ class RegistrationStatus(Capability):
         self,
         username: str,
     ) -> bool:
-        """Checks if username is registered in Gettr
+        """Checks if the given username is registered on GETTR.
 
         :param str username: username to check"""
 
