@@ -80,9 +80,9 @@ Options:
 
 Commands:
   all             Pull all posts (or comments) sequentially.
-  registered      Check if username exists.
   comments        Pull comments on a specific post.
   hashtags        Pull the suggested hashtags (the top suggestions are...
+  registered      Check if a username is registered.
   search          Search posts for the given query.
   suggested       Pull the suggested users (users displayed on the home...
   trends          Pull all the trends (posts displayed on the home page).
@@ -119,17 +119,6 @@ Options:
   --help                   Show this message and exit.
 ```
 
-### `registered`
-
-```text
-Usage: gogettr registered [OPTIONS] USERNAME
-
-  Check if username exists.
-
-Options:
-  --help         Show this message and exit.
-```
-
 ### `comments`
 
 ```text
@@ -156,6 +145,17 @@ Usage: gogettr hashtags [OPTIONS]
 Options:
   --max INTEGER  the maximum number of hashtags to pull
   --help         Show this message and exit.
+```
+
+### `registered`
+
+```text
+Usage: gogettr registered [OPTIONS] USERNAME
+
+  Check if a username is registered.
+
+Options:
+  --help  Show this message and exit.
 ```
 
 ### `search`
