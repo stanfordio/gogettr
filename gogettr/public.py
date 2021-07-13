@@ -15,6 +15,7 @@ from gogettr.capabilities import (
     user_info,
     user_relationships,
     comments,
+    registration_status,
 )
 
 
@@ -71,3 +72,10 @@ class PublicClient:
     def comments(self, *args, **kwargs):
         """Wrapper for "comments"."""
         return comments.Comments(self.api_client).pull(*args, **kwargs)
+
+    @wraps(registration_status.RegistrationStatus.pull)
+    def is_registered(self, *args, **kwargs):
+        """Wrapper for "is_registered"."""
+        return registration_status.RegistrationStatus(self.api_client).pull(
+            *args, **kwargs
+        )

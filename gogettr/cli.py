@@ -163,3 +163,11 @@ def comments(post_id: str, max: int = None):
     """Pull comments on a specific post."""
     for comment in client.comments(post_id=post_id, max=max):
         print(json.dumps(comment))
+
+
+@cli.command()
+@click.argument("username")
+def registered(username: str):
+    """Check if a username is registered."""
+    r = client.is_registered(username=username)
+    print(json.dumps(r))
