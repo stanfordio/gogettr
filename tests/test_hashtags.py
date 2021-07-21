@@ -12,4 +12,4 @@ def test_suggested_hashtags():
 
     # Later results (e.g., past #5) won't have expanded info
     assert "hashtag" in resp[0]
-    assert "score" in resp[0]
+    assert ("description" in resp[0]) or ("score" in resp[0])
