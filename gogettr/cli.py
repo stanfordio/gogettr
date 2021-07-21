@@ -151,7 +151,9 @@ def search(query, max: int = None):
     """Search posts for the given query.
 
     This is equivalent to putting the query in the GETTR search box and
-    archiving all the posts that result."""
+    archiving all the posts that result.
+    
+    Note that GETTR will return a maximum of 500 results for a query."""
     for post in client.search(query, max=max):
         print(json.dumps(post))
 
