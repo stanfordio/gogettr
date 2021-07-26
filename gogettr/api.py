@@ -58,6 +58,9 @@ class ApiClient:
             except ReadTimeout as err:
                 handle_error({"timeout": err})
                 continue
+            except Exception as e:
+                handle_error({"error": str(e)})
+                continue
 
             logging.info("%s gave response: %s", url, resp.text)
 
