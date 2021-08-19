@@ -284,4 +284,4 @@ When run in CLI mode, GoGettr will log extensive debug information to `gogettr.l
 
 Support for the following capabilities is planned:
 
-- [ ] Multithreaded/concurrent API requests for sequential scans (e.g., pulling all posts on the platform)
+- ...nothing right now! (Got an idea? Submit an issue/PR!)
