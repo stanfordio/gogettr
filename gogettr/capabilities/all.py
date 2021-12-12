@@ -104,8 +104,7 @@ class All(Capability):
         except GettrApiError as e:
             logging.warning("Hit API error while pulling: %s", e)
             return
-
-        if data["data"]["txt"] == "Content Not Found":
+        if "txt" in data and data["data"]["txt"] == "Content Not Found":
             # Yes, this is how they do it. It's just a string.
             logging.info("Post %s not found...", post_id)
             return
