@@ -4,9 +4,7 @@ from typing import Iterator
 
 
 class Live(Capability):
-    def pull(
-        self, max: int = None, lang: str = "all"
-    ) -> Iterator[dict]:
+    def pull(self, max: int = None, lang: str = "all") -> Iterator[dict]:
 
         url = "/u/posts/livenow"
         n = 0
@@ -19,7 +17,7 @@ class Live(Capability):
                 "max": 20,
             },
             offset_step=20,
-            offset_start=0  
+            offset_start=0,
         ):
             for post in data["data"]["list"]:
                 id = post["activity"]["tgt_id"]

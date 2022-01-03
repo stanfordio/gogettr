@@ -16,7 +16,7 @@ from gogettr.capabilities import (
     user_relationships,
     comments,
     registration_status,
-    live
+    live,
 )
 
 
@@ -80,7 +80,7 @@ class PublicClient:
         return registration_status.RegistrationStatus(self.api_client).pull(
             *args, **kwargs
         )
-    
+
     @wraps(live.Live.pull)
     def live(self, *args, **kwargs):
         """Wrapper for "live"."""
