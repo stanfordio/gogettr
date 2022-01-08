@@ -180,6 +180,6 @@ def registered(username: str):
     "--max", help="the maximum number of livestream entries to pull", type=int
 )
 def live(max: int = None):
-    """Pull all the livestream posts"""
+    """Pull livestream posts."""
     for post in client.live(max=max):
         print(json.dumps(post))
