@@ -82,6 +82,7 @@ Commands:
   all             Pull all posts (or comments) sequentially.
   comments        Pull comments on a specific post.
   hashtags        Pull the suggested hashtags (the top suggestions are...
+  live            Pull livestream posts.
   registered      Check if a username is registered.
   search          Search posts for the given query.
   suggested       Pull the suggested users (users displayed on the home...
@@ -246,6 +247,18 @@ Usage: gogettr user-info [OPTIONS] USERNAME
 
 Options:
   --help  Show this message and exit.
+```
+
+### `live`
+
+```text
+Usage: gogettr live [OPTIONS]
+
+  Pull livestream posts.
+
+Options:
+  --max INTEGER  the maximum number of livestream entries to pull
+  --help         Show this message and exit.
 ```
 
 ## Module Usage

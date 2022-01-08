@@ -173,3 +173,13 @@ def registered(username: str):
     """Check if a username is registered."""
     r = client.is_registered(username=username)
     print(json.dumps(r))
+
+
+@cli.command()
+@click.option(
+    "--max", help="the maximum number of livestream entries to pull", type=int
+)
+def live(max: int = None):
+    """Pull livestream posts."""
+    for post in client.live(max=max):
+        print(json.dumps(post))
