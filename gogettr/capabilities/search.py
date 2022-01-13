@@ -18,10 +18,10 @@ class Search(Capability):
         for data in self.client.get_paginated(
             url,
             params={
-                "max": 2000,
+                "max": 20,
                 "q": query,
             },
-            offset_step=2000,
+            offset_step=20,
         ):
             for event in data["data"]["list"]:
                 id = event["activity"]["tgt_id"]
