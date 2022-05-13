@@ -12,7 +12,7 @@ import pkg_resources
 from gogettr import PublicClient
 
 # Setup logging
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 log_hander = logging.FileHandler("gogettr.log")
 logger.addHandler(log_hander)

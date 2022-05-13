@@ -5,6 +5,9 @@ from gogettr.capabilities.base import Capability
 from gogettr.utils import merge
 
 
+logger = logging.getLogger(__name__)
+
+
 class Search(Capability):
     def pull(self, query: str, max: int = None) -> Iterator[dict]:
         """Search for posts matching the given query.
@@ -30,7 +33,7 @@ class Search(Capability):
                 if id not in data["aux"]["post"]:
                     # Should we check `s_pst` too? It seems we usually don't need to, but
                     # worth investigating further.
-                    logging.warning("Unable to find post data for post %s", id)
+                    logger.warning("Unable to find post data for post %s", id)
                     continue
 
                 # Information about posts is spread across three objects, so we merge them
