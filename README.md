@@ -83,7 +83,6 @@ Commands:
   comments        Pull comments on a specific post.
   hashtags        Pull the suggested hashtags (the top suggestions are...
   live            Pull livestream posts.
-  registered      Check if a username is registered.
   search          Search posts for the given query.
   suggested       Pull the suggested users (users displayed on the home...
   trends          Pull all the trends (posts displayed on the home page).
@@ -146,17 +145,6 @@ Usage: gogettr hashtags [OPTIONS]
 Options:
   --max INTEGER  the maximum number of hashtags to pull
   --help         Show this message and exit.
-```
-
-### `registered`
-
-```text
-Usage: gogettr registered [OPTIONS] USERNAME
-
-  Check if a username is registered.
-
-Options:
-  --help  Show this message and exit.
 ```
 
 ### `search`
