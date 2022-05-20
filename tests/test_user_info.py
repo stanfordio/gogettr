@@ -13,7 +13,7 @@ def test_user_info():
     assert resp["nickname"] == "Support & Help"
     assert resp["username"] == "support"
     assert resp["ousername"] == "support"
-    assert resp["infl"] == 2
+    assert resp["infl"] == "4"
 
 
 def test_user_info_nonexistent():
