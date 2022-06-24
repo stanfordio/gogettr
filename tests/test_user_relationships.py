@@ -8,9 +8,9 @@ client = PublicClient()
 def test_user_following():
     """Verifies we can extract who a user is following."""
     resp = list(
-        client.user_relationships(username="dineshdsouza", type="following", max=50)
+        client.user_relationships(username="etaoinshrdlu", type="following", max=50)
     )
-    assert "newsmax" in [user["ousername"] for user in resp]
+    assert "JasonMillerinDC" in [user["ousername"] for user in resp]
 
 
 def test_user_followers():

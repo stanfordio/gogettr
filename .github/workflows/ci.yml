@@ -31,6 +31,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           VALIDATE_PYTHON_MYPY: false
           VALIDATE_PYTHON_ISORT: false # covered mostly by pylint
+          VALIDATE_NATURAL_LANGUAGE: false # pedantic and unhelpful
 
       - name: Install Dependencies
         run: poetry install

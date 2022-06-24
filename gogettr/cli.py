@@ -12,7 +12,7 @@ import pkg_resources
 from gogettr import PublicClient
 
 # Setup logging
-logger = logging.getLogger()
+logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 log_hander = logging.FileHandler("gogettr.log")
 logger.addHandler(log_hander)
@@ -185,7 +185,9 @@ def search(query, max: int = None, ensure_ascii: bool = True):
     """Search posts for the given query.
 
     This is equivalent to putting the query in the GETTR search box and
-    archiving all the posts that result."""
+    archiving all the posts that result.
+
+    Note that GETTR will return a maximum of 500 results for a query."""
     for post in client.search(query, max=max):
         print(json.dumps(post, ensure_ascii=ensure_ascii))
 
@@ -200,3 +202,16 @@ def comments(post_id: str, max: int = None, ensure_ascii: bool = True):
     """Pull comments on a specific post."""
     for comment in client.comments(post_id=post_id, max=max):
         print(json.dumps(comment, ensure_ascii=ensure_ascii))
+
+
+@cli.command()
+@click.option(
+    "--max", help="the maximum number of livestream entries to pull", type=int
+)
+@click.option(
+    "--ensure_ascii", is_flag=True, default=False, help="Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output"
+)
+def live(max: int = None, ensure_ascii: bool = True):
+    """Pull livestream posts."""
+    for post in client.live(max=max):
+        print(json.dumps(post, ensure_ascii=ensure_ascii))

@@ -28,7 +28,9 @@ def test_user_comments():
 
 def test_user_likes():
     """Verifies we can extract comments for a simple, known user."""
-    comments = list(client.user_activity(username="support", max=10, type="likes"))
+    comments = list(
+        client.user_activity(username="emeraldrobinson", max=10, type="likes")
+    )
     assert len(comments) == 10
 
 

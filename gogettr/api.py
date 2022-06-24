@@ -16,6 +16,8 @@ USER_AGENT = (
     "(KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
 )
 
+logger = logging.getLogger(__name__)
+
 
 class ApiClient:
     """A standard and safe way to interact with the GETTR API. Catches errors, supports
@@ -34,18 +36,18 @@ class ApiClient:
         errors = []  # keeps track of the errors we've encountered
 
         def handle_error(issue):
-            logging.warning(
+            logger.warning(
                 "Unable to pull from API: %s. Waiting %s seconds before retrying (%s/%s)...",
                 issue,
-                4 ** tries,
+                4**tries,
                 tries,
                 retries,
             )
-            time.sleep(4 ** tries)
+            time.sleep(4**tries)
             errors.append(issue)
 
         while tries < retries:
-            logging.info("Requesting %s (params: %s)...", url, params)
+            logger.info("Requesting %s (params: %s)...", url, params)
             tries += 1
 
             try:
@@ -58,14 +60,17 @@ class ApiClient:
             except ReadTimeout as err:
                 handle_error({"timeout": err})
                 continue
+            except Exception as e:
+                handle_error({"error": str(e)})
+                continue
 
-            logging.info("%s gave response: %s", url, resp.text)
+            logger.info("%s gave response: %s", url, resp.text)
 
             if resp.status_code in [429, 500, 502, 503, 504]:
                 handle_error({"status_code": resp.status_code})
                 continue
 
-            logging.debug("GET %s with params %s yielded %s", url, params, resp.content)
+            logger.debug("GET %s with params %s yielded %s", url, params, resp.content)
 
             data = resp.json()
             if key in data:

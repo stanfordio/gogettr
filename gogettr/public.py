@@ -15,6 +15,7 @@ from gogettr.capabilities import (
     user_info,
     user_relationships,
     comments,
+    live,
 )
 
 
@@ -71,3 +72,8 @@ class PublicClient:
     def comments(self, *args, **kwargs):
         """Wrapper for "comments"."""
         return comments.Comments(self.api_client).pull(*args, **kwargs)
+
+    @wraps(live.Live.pull)
+    def live(self, *args, **kwargs):
+        """Wrapper for "live"."""
+        return live.Live(self.api_client).pull(*args, **kwargs)

@@ -9,6 +9,9 @@ from gogettr.errors import GettrApiError
 from gogettr.utils import b36decode, b36encode, extract, merge
 
 
+logger = logging.getLogger(__name__)
+
+
 class All(Capability):
     def pull(
         self,
@@ -102,12 +105,11 @@ class All(Capability):
                 key="result",
             )
         except GettrApiError as e:
-            logging.warning("Hit API error while pulling: %s", e)
+            logger.warning("Hit API error while pulling: %s", e)
             return
-
-        if data["data"]["txt"] == "Content Not Found":
+        if "txt" in data and data["data"]["txt"] == "Content Not Found":
             # Yes, this is how they do it. It's just a string.
-            logging.info("Post %s not found...", post_id)
+            logger.info("Post %s not found...", post_id)
             return
 
         user_id = extract(data, ["data", "uid"])

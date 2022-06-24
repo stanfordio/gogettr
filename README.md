@@ -1,21 +1,21 @@
 # GoGettr
 
-GoGettr is an API client for GETTR, a "non-bias [sic] social network." (We will not reward their domain with a hyperlink.) GoGettr is built and maintained by the [Stanford Internet Observatory](https://io.stanford.edu).
+GoGettr is an API client for GETTR, a "non-bias [sic] social network." GoGettr is built and maintained by the [Stanford Internet Observatory](https://io.stanford.edu).
 
 This tool does not currently require any authentication with GETTR; it gathers all its data through publicly accessible endpoints.
 
 Currently, this tool can:
 
-* Pull all the posts made on the platform
-* Pull all the comments made on the platform
-* Pull all the top "trending" hashtags
-* Pull all the suggested users
-* Pull all the "trending" posts (i.e., the posts on the home page)
-* Pull all the posts and/or comments of a user on the platform
-* Pull all a users' followers
-* Pull all the users a particular user follows
-* Pull all the comments on a particular posts
-* Pull information about any users on the platform
+* Pull posts made on the platform
+* Pull comments made on the platform
+* Pull all top "trending" hashtags
+* Pull all suggested users
+* Pull all "trending" posts (i.e., the posts on the home page)
+* Pull all posts and/or comments of a user on the platform
+* Pull all a user's followers
+* Pull all users a particular user follows
+* Pull all comments on a particular post
+* Pull profile information about particular users
 
 GoGettr is designed for academic research, open source intelligence gathering, and data archival. It pulls all of the data from the publicly accessible API.
 
@@ -82,6 +82,7 @@ Commands:
   all             Pull all posts (or comments) sequentially.
   comments        Pull comments on a specific post.
   hashtags        Pull the suggested hashtags (the top suggestions are...
+  live            Pull livestream posts.
   search          Search posts for the given query.
   suggested       Pull the suggested users (users displayed on the home...
   trends          Pull all the trends (posts displayed on the home page).
@@ -246,6 +247,18 @@ Options:
   --help              Show this message and exit.
 ```
 
+### `live`
+
+```text
+Usage: gogettr live [OPTIONS]
+
+  Pull livestream posts.
+
+Options:
+  --max INTEGER  the maximum number of livestream entries to pull
+  --help         Show this message and exit.
+```
+
 ## Module Usage
 
 You can use GoGettr as a Python module. For example, here's how you would pull all a user's posts:
@@ -282,4 +295,4 @@ When run in CLI mode, GoGettr will log extensive debug information to `gogettr.l
 
 Support for the following capabilities is planned:
 
-- [ ] Multithreaded/concurrent API requests for sequential scans (e.g., pulling all posts on the platform)
+- ...nothing right now! (Got an idea? Submit an issue/PR!)

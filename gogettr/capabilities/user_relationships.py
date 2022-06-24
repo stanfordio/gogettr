@@ -29,10 +29,10 @@ class UserRelationships(Capability):
         for data in self.client.get_paginated(
             url,
             params={
-                "max": 500,  # They don't seem to limit this!
+                "max": 20,  # They don't seem to limit this!
                 "incl": "userstats|userinfo",
             },
-            offset_step=500,
+            offset_step=20,
         ):
 
             # Check if we've run out of users to pull
