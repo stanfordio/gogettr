@@ -136,7 +136,7 @@ def user_followers(username, max: int = None, ensure_ascii: bool = True):
     for user_dict in client.user_relationships(username, max=max, type="followers"):
         print(json.dumps(user_dict, ensure_ascii=ensure_ascii))
 
-
+# jscpd:ignore-start
 @cli.command()
 @click.argument("username")
 @click.option("--max", help="the maximum number of users to pull", type=int)
@@ -146,6 +146,7 @@ def user_followers(username, max: int = None, ensure_ascii: bool = True):
     default=False,
     help="Ensure only ASCII output",
 )
+# jscpd:ignore-end
 def user_following(username, max: int = None, ensure_ascii: bool = True):
     """Pull all users a given user follows."""
     for user_dict in client.user_relationships(username, max=max, type="following"):
