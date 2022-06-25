@@ -40,7 +40,7 @@ def cli():
     "--ensure_ascii",
     is_flag=True,
     default=False,
-    help="Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output",
+    help="Ensure only ASCII output",
 )
 def user(
     username,
@@ -78,7 +78,7 @@ def user(
     "--ensure_ascii",
     is_flag=True,
     default=False,
-    help="Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output",
+    help="Ensure only ASCII output",
 )
 def all(
     first=None,
@@ -115,7 +115,7 @@ def all(
     "--ensure_ascii",
     is_flag=True,
     default=False,
-    help="Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output",
+    help="Ensure only ASCII output",
 )
 def user_info(username, ensure_ascii: bool = True):
     """Pull given user's information."""
@@ -129,7 +129,7 @@ def user_info(username, ensure_ascii: bool = True):
     "--ensure_ascii",
     is_flag=True,
     default=False,
-    help="Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output",
+    help="Ensure only ASCII output",
 )
 def user_followers(username, max: int = None, ensure_ascii: bool = True):
     """Pull all a user's followers."""
@@ -144,7 +144,7 @@ def user_followers(username, max: int = None, ensure_ascii: bool = True):
     "--ensure_ascii",
     is_flag=True,
     default=False,
-    help="Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output",
+    help="Ensure only ASCII output",
 )
 def user_following(username, max: int = None, ensure_ascii: bool = True):
     """Pull all users a given user follows."""
@@ -159,7 +159,7 @@ def user_following(username, max: int = None, ensure_ascii: bool = True):
     "--ensure_ascii",
     is_flag=True,
     default=False,
-    help="Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output",
+    help="Ensure only ASCII output",
 )
 def trends(max: int = None, until: str = None, ensure_ascii: bool = True):
     """Pull all the trends (posts displayed on the home page)."""
@@ -173,7 +173,7 @@ def trends(max: int = None, until: str = None, ensure_ascii: bool = True):
     "--ensure_ascii",
     is_flag=True,
     default=False,
-    help="Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output",
+    help="Ensure only ASCII output",
 )
 def suggested(max: int = None, ensure_ascii: bool = True):
     """Pull the suggested users (users displayed on the home page)."""
@@ -187,7 +187,7 @@ def suggested(max: int = None, ensure_ascii: bool = True):
     "--ensure_ascii",
     is_flag=True,
     default=False,
-    help="Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output",
+    help="Ensure only ASCII output",
 )
 def hashtags(max: int = None, ensure_ascii: bool = True):
     """Pull the suggested hashtags (the top suggestions are displayed on the
@@ -206,7 +206,7 @@ def hashtags(max: int = None, ensure_ascii: bool = True):
     "--ensure_ascii",
     is_flag=True,
     default=False,
-    help="Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output",
+    help="Ensure only ASCII output",
 )
 def search(query, max: int = None, ensure_ascii: bool = True):
     """Search posts for the given query.
@@ -226,7 +226,7 @@ def search(query, max: int = None, ensure_ascii: bool = True):
     "--ensure_ascii",
     is_flag=True,
     default=False,
-    help="Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output",
+    help="Ensure only ASCII output",
 )
 def comments(post_id: str, max: int = None, ensure_ascii: bool = True):
     """Pull comments on a specific post."""
@@ -242,7 +242,7 @@ def comments(post_id: str, max: int = None, ensure_ascii: bool = True):
     "--ensure_ascii",
     is_flag=True,
     default=False,
-    help="Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output",
+    help="Ensure only ASCII output",
 )
 def live(max: int = None, ensure_ascii: bool = True):
     """Pull livestream posts."""

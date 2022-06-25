@@ -116,7 +116,7 @@ Options:
                            to first)
   --type [posts|comments]
   --workers INTEGER        the number of threads to run in parallel
-  --ensure_ascii           Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output
+  --ensure_ascii           Ensure only ASCII output
   --help                   Show this message and exit.
 ```
 
@@ -129,7 +129,7 @@ Usage: gogettr comments [OPTIONS] POST_ID
 
 Options:
   --max INTEGER       the maximum number of comments to pull
-  --ensure_ascii      Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output
+  --ensure_ascii      Ensure only ASCII output
   --help              Show this message and exit.
 ```
 
@@ -146,7 +146,7 @@ Usage: gogettr hashtags [OPTIONS]
 
 Options:
   --max INTEGER       the maximum number of hashtags to pull
-  --ensure_ascii      Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output
+  --ensure_ascii      Ensure only ASCII output
   --help              Show this message and exit.
 ```
 
@@ -162,7 +162,7 @@ Usage: gogettr search [OPTIONS] QUERY
 
 Options:
   --max INTEGER       the maximum number of posts to pull
-  --ensure_ascii      Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output
+  --ensure_ascii      Ensure only ASCII output
   --help              Show this message and exit.
 ```
 
@@ -175,7 +175,7 @@ Usage: gogettr suggested [OPTIONS]
 
 Options:
   --max INTEGER       the maximum number of users to pull
-  --ensure_ascii      Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output
+  --ensure_ascii      Ensure only ASCII output
   --help              Show this message and exit.
 ```
 
@@ -189,7 +189,7 @@ Usage: gogettr trends [OPTIONS]
 Options:
   --max INTEGER       the maximum number of posts to pull
   --until TEXT        the ID of the earliest post to pull
-  --ensure_ascii      Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output
+  --ensure_ascii      Ensure only ASCII output
   --help              Show this message and exit.
 ```
 
@@ -205,7 +205,7 @@ Options:
   --until TEXT                   the ID of the earliest activity to pull for
                                  the user
   --type [posts|comments|likes]
-  --ensure_ascii                 Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output
+  --ensure_ascii                 Ensure only ASCII output
   --help                         Show this message and exit.
 ```
 
@@ -218,7 +218,7 @@ Usage: gogettr user-followers [OPTIONS] USERNAME
 
 Options:
   --max INTEGER       the maximum number of users to pull
-  --ensure_ascii      Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output
+  --ensure_ascii      Ensure only ASCII output
   --help              Show this message and exit.
 ```
 
@@ -231,7 +231,7 @@ Usage: gogettr user-following [OPTIONS] USERNAME
 
 Options:
   --max INTEGER       the maximum number of users to pull
-  --ensure_ascii      Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output
+  --ensure_ascii      Ensure only ASCII output
   --help              Show this message and exit.
 ```
 
@@ -243,7 +243,7 @@ Usage: gogettr user-info [OPTIONS] USERNAME
   Pull given user's information.
 
 Options:
-  --ensure_ascii      Sets the output to only allow ASCII characters, it is an optional flag, by default it will not ensure ASCII char output
+  --ensure_ascii      Ensure only ASCII output
   --help              Show this message and exit.
 ```
 
@@ -256,6 +256,7 @@ Usage: gogettr live [OPTIONS]
 
 Options:
   --max INTEGER  the maximum number of livestream entries to pull
+  --ensure_ascii Ensure only ASCII output
   --help         Show this message and exit.
 ```
 
