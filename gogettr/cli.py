@@ -36,10 +36,22 @@ def cli():
     type=click.Choice(["posts", "comments", "likes"]),
     default="posts",
 )
-def user(username, max: int = None, until: str = None, type: str = None):
+@click.option(
+    "--ensure_ascii",
+    is_flag=True,
+    default=False,
+    help="Ensure only ASCII output",
+)
+def user(
+    username,
+    max: int = None,
+    until: str = None,
+    type: str = None,
+    ensure_ascii: bool = True,
+):
     """Pull the posts, likes, or comments made by a user."""
     for post in client.user_activity(username, max=max, until=until, type=type):
-        print(json.dumps(post))
+        print(json.dumps(post, ensure_ascii=ensure_ascii))
 
 
 @cli.command()
@@ -62,6 +74,12 @@ def user(username, max: int = None, until: str = None, type: str = None):
 @click.option(
     "--workers", help="the number of threads to run in parallel", type=int, default=10
 )
+@click.option(
+    "--ensure_ascii",
+    is_flag=True,
+    default=False,
+    help="Ensure only ASCII output",
+)
 def all(
     first=None,
     last=None,
@@ -69,6 +87,7 @@ def all(
     rev=False,
     type: str = None,
     workers: int = None,
+    ensure_ascii: bool = True,
 ):
     """Pull all posts (or comments) sequentially.
 
@@ -87,67 +106,110 @@ def all(
         type=type,
         workers=workers,
     ):
-        print(json.dumps(post))
+        print(json.dumps(post, ensure_ascii=ensure_ascii))
 
 
 @cli.command()
 @click.argument("username")
-def user_info(username):
+@click.option(
+    "--ensure_ascii",
+    is_flag=True,
+    default=False,
+    help="Ensure only ASCII output",
+)
+def user_info(username, ensure_ascii: bool = True):
     """Pull given user's information."""
-    print(json.dumps(client.user_info(username)))
+    print(json.dumps(client.user_info(username), ensure_ascii=ensure_ascii))
 
 
 @cli.command()
 @click.argument("username")
 @click.option("--max", help="the maximum number of users to pull", type=int)
-def user_followers(username, max: int = None):
+@click.option(
+    "--ensure_ascii",
+    is_flag=True,
+    default=False,
+    help="Ensure only ASCII output",
+)
+def user_followers(username, max: int = None, ensure_ascii: bool = True):
     """Pull all a user's followers."""
     for user_dict in client.user_relationships(username, max=max, type="followers"):
-        print(json.dumps(user_dict))
+        print(json.dumps(user_dict, ensure_ascii=ensure_ascii))
 
-
+# jscpd:ignore-start
 @cli.command()
 @click.argument("username")
 @click.option("--max", help="the maximum number of users to pull", type=int)
-def user_following(username, max: int = None):
+@click.option(
+    "--ensure_ascii",
+    is_flag=True,
+    default=False,
+    help="Ensure only ASCII output",
+)
+# jscpd:ignore-end
+def user_following(username, max: int = None, ensure_ascii: bool = True):
     """Pull all users a given user follows."""
     for user_dict in client.user_relationships(username, max=max, type="following"):
-        print(json.dumps(user_dict))
+        print(json.dumps(user_dict, ensure_ascii=ensure_ascii))
 
 
 @cli.command()
 @click.option("--max", help="the maximum number of posts to pull", type=int)
 @click.option("--until", help="the ID of the earliest post to pull")
-def trends(max: int = None, until: str = None):
+@click.option(
+    "--ensure_ascii",
+    is_flag=True,
+    default=False,
+    help="Ensure only ASCII output",
+)
+def trends(max: int = None, until: str = None, ensure_ascii: bool = True):
     """Pull all the trends (posts displayed on the home page)."""
     for post in client.trends(max=max, until=until):
-        print(json.dumps(post))
+        print(json.dumps(post, ensure_ascii=ensure_ascii))
 
 
 @cli.command()
 @click.option("--max", help="the maximum number of users to pull", type=int)
-def suggested(max: int = None):
+@click.option(
+    "--ensure_ascii",
+    is_flag=True,
+    default=False,
+    help="Ensure only ASCII output",
+)
+def suggested(max: int = None, ensure_ascii: bool = True):
     """Pull the suggested users (users displayed on the home page)."""
     for user_dict in client.suggested(max=max):
-        print(json.dumps(user_dict))
+        print(json.dumps(user_dict, ensure_ascii=ensure_ascii))
 
 
 @cli.command()
 @click.option("--max", help="the maximum number of hashtags to pull", type=int)
-def hashtags(max: int = None):
+@click.option(
+    "--ensure_ascii",
+    is_flag=True,
+    default=False,
+    help="Ensure only ASCII output",
+)
+def hashtags(max: int = None, ensure_ascii: bool = True):
     """Pull the suggested hashtags (the top suggestions are displayed on the
     front page).
 
     Note that while the first five or so hashtags have expanded information
     associated with them, later results do not."""
     for hashtag in client.hashtags(max=max):
-        print(json.dumps(hashtag))
+        print(json.dumps(hashtag, ensure_ascii=ensure_ascii))
 
 
 @cli.command()
 @click.argument("query")
 @click.option("--max", help="the maximum number of posts to pull", type=int)
-def search(query, max: int = None):
+@click.option(
+    "--ensure_ascii",
+    is_flag=True,
+    default=False,
+    help="Ensure only ASCII output",
+)
+def search(query, max: int = None, ensure_ascii: bool = True):
     """Search posts for the given query.
 
     This is equivalent to putting the query in the GETTR search box and
@@ -155,23 +217,35 @@ def search(query, max: int = None):
 
     Note that GETTR will return a maximum of 500 results for a query."""
     for post in client.search(query, max=max):
-        print(json.dumps(post))
+        print(json.dumps(post, ensure_ascii=ensure_ascii))
 
 
 @cli.command()
 @click.option("--max", help="the maximum number of comments to pull", type=int)
 @click.argument("post_id")
-def comments(post_id: str, max: int = None):
+@click.option(
+    "--ensure_ascii",
+    is_flag=True,
+    default=False,
+    help="Ensure only ASCII output",
+)
+def comments(post_id: str, max: int = None, ensure_ascii: bool = True):
     """Pull comments on a specific post."""
     for comment in client.comments(post_id=post_id, max=max):
-        print(json.dumps(comment))
+        print(json.dumps(comment, ensure_ascii=ensure_ascii))
 
 
 @cli.command()
 @click.option(
     "--max", help="the maximum number of livestream entries to pull", type=int
 )
-def live(max: int = None):
+@click.option(
+    "--ensure_ascii",
+    is_flag=True,
+    default=False,
+    help="Ensure only ASCII output",
+)
+def live(max: int = None, ensure_ascii: bool = True):
     """Pull livestream posts."""
     for post in client.live(max=max):
-        print(json.dumps(post))
+        print(json.dumps(post, ensure_ascii=ensure_ascii))

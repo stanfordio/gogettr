@@ -39,11 +39,11 @@ class ApiClient:
             logger.warning(
                 "Unable to pull from API: %s. Waiting %s seconds before retrying (%s/%s)...",
                 issue,
-                4**tries,
+                4 ** tries,
                 tries,
                 retries,
             )
-            time.sleep(4**tries)
+            time.sleep(4 ** tries)
             errors.append(issue)
 
         while tries < retries:
