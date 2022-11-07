@@ -38,7 +38,7 @@ def cli():
 )
 def user(username, max: int = None, until: str = None, type: str = None):
     """Pull the posts, likes, or comments made by a user."""
-    for post in client.user_activity(username, max=max, until=until, type=type):
+    for post in client.user_activity(username.lower(), max=max, until=until, type=type):
         print(json.dumps(post))
 
 
