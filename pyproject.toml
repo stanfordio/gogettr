@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "gogettr"
-version = "0.8.0"
+version = "0.9.0"
 description = "Extraction tool for GETTR, a \"non-bias [sic] social network.\""
 authors = ["Stanford Internet Observatory <mccain@stanford.edu>"]
 license = "Apache-2.0"
