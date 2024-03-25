@@ -20,7 +20,7 @@ requests = "^2.25.1"
 click = "^8.0.1"
 
 [tool.poetry.dev-dependencies]
-black = "^21.6b0"
+black = "^24.3"
 pytest = "^6.2.4"
 pylint = "^2.9.3"
 
