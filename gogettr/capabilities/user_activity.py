@@ -40,7 +40,7 @@ class UserActivity(Capability):
             params={
                 "max": 20,
                 "dir": "fwd",
-                "incl": "posts|stats|userinfo|shared|liked",
+                "incl": "posts|stats|userinfo|shared|liked|pvotes",
                 "fp": fp_setting,
             },
         ):

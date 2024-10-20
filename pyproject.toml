@@ -15,15 +15,16 @@ readme = "README.md"
 gogettr = "gogettr.cli:cli"
 
 [tool.poetry.dependencies]
-python = "^3.8"
-requests = "^2.25.1"
-click = "^8.0.1"
+python = "^3.10"
+requests = "^2.32"
+click = "^8.1"
+setuptools = "^75.2.0"
 
 [tool.poetry.dev-dependencies]
-black = "^21.6b0"
+black = "^24.8"
 pytest = "^6.2.4"
 pylint = "^2.9.3"
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
+requires = ["poetry-core>=1.9.1"]
 build-backend = "poetry.core.masonry.api"
