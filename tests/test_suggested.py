@@ -9,5 +9,7 @@ def test_suggested():
     """Verifies we can extract suggested users."""
     resp = list(client.suggested(max=50))
     assert len(resp) == 50
-    assert "nickname" in resp[0]  # Verify that it is actual user data
-    assert "dsc" in resp[0]
+    # Verify the response shape (rather than optional per-user fields like
+    # `dsc`, which not every suggested account has).
+    assert resp[0].get("_t") == "uinf"
+    assert "username" in resp[0]

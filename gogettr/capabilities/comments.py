@@ -3,6 +3,7 @@ Pull comments from a specific GETTR post.
 
 :author: Konrad Iturbe
 """
+
 from typing import Iterator
 
 from gogettr.capabilities.base import Capability

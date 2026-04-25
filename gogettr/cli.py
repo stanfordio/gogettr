@@ -1,13 +1,14 @@
 """Defines the CLI for GoGettr, which is really just a thin wrapper on top of the
 module."""
+
 # pylint: disable=W0622 # we have variables called "max", "all", etc.
 # pylint: disable=R0913 # it's ok for these functions to take many arguments
 
 import json
 import logging
+from importlib.metadata import version as _pkg_version
 
 import click
-import pkg_resources
 
 from gogettr import PublicClient
 
@@ -21,7 +22,7 @@ client = PublicClient()
 
 
 @click.group()
-@click.version_option(version=pkg_resources.get_distribution("gogettr").version)
+@click.version_option(version=_pkg_version("gogettr"))
 def cli():
     """GoGettr is an unauthenticated API client for GETTR."""
 

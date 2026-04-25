@@ -1,6 +1,6 @@
 # GoGettr
 
-GoGettr is an API client for GETTR, a "non-bias [sic] social network." GoGettr is built and maintained by the [Stanford Internet Observatory](https://io.stanford.edu).
+GoGettr is an API client for GETTR, a "non-bias [sic] social network."
 
 This tool does not currently require any authentication with GETTR; it gathers all its data through publicly accessible endpoints.
 
@@ -21,7 +21,7 @@ GoGettr is designed for academic research, open source intelligence gathering, a
 
 ## Installation
 
-GoGettr is available on PyPI. To install it, simply run `pip install gogettr`. Provided your `pip` is setup correctly, this will make `gogettr` available both as a command and as a Python package. **Note that GoGettr requires Python 3.8 or higher.**
+GoGettr is available on PyPI. To install it, simply run `pip install gogettr`. Provided your `pip` is setup correctly, this will make `gogettr` available both as a command and as a Python package. **Note that GoGettr requires Python 3.10 or higher.**
 
 ## CLI Playbook
 

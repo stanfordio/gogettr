@@ -1,6 +1,5 @@
 """Tests for the 'user'/'user-activity' capability."""
 
-
 from gogettr import PublicClient
 
 client = PublicClient()
@@ -27,11 +26,9 @@ def test_user_comments():
 
 
 def test_user_likes():
-    """Verifies we can extract comments for a simple, known user."""
-    comments = list(
-        client.user_activity(username="emeraldrobinson", max=10, type="likes")
-    )
-    assert len(comments) == 10
+    """Verifies we can extract likes for a known user."""
+    likes = list(client.user_activity(username="infowars", max=10, type="likes"))
+    assert len(likes) == 10
 
 
 def test_user_pagination():

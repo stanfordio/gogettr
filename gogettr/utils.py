@@ -10,7 +10,7 @@ def merge(*dicts):
     for dictionary in dicts:
         if dictionary is None:
             return out
-        for (key, val) in dictionary.items():
+        for key, val in dictionary.items():
             out[key] = val
     return out
 

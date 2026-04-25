@@ -1,5 +1,6 @@
 """Defines the PublicClient, which is the primary way to interface with the
 unauthenticated GETTR API."""
+
 # pylint: disable=W0622 # we have variables called "max", "all", etc.
 
 from functools import wraps
