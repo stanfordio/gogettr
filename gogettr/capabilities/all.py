@@ -8,7 +8,6 @@ from gogettr.capabilities.base import Capability
 from gogettr.errors import GettrApiError
 from gogettr.utils import b36decode, b36encode, extract, merge
 
-
 logger = logging.getLogger(__name__)
 
 

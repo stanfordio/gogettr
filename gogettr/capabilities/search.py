@@ -4,7 +4,6 @@ from typing import Iterator
 from gogettr.capabilities.base import Capability
 from gogettr.utils import merge
 
-
 logger = logging.getLogger(__name__)
 
 
