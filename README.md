@@ -1,3 +1,5 @@
+### Please see maintained fork at: https://github.com/w2rc/gogettr
+
 # GoGettr
 
 GoGettr is an API client for GETTR, a "non-bias [sic] social network."
